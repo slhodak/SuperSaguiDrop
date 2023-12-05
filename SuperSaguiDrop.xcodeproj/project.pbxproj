@@ -1,0 +1,692 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		174308DD2B0694DA009BB00F /* FallingSpriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308DC2B0694DA009BB00F /* FallingSpriteView.swift */; };
+		174308DF2B069528009BB00F /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308DE2B069528009BB00F /* GameTimer.swift */; };
+		174308E12B069550009BB00F /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308E02B069550009BB00F /* DebugView.swift */; };
+		D6638E9B28B5FFE80086F995 /* SuperSaguiDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638E9A28B5FFE80086F995 /* SuperSaguiDropApp.swift */; };
+		D6638E9F28B5FFEA0086F995 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6638E9E28B5FFEA0086F995 /* Assets.xcassets */; };
+		D6638EA228B5FFEA0086F995 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6638EA128B5FFEA0086F995 /* Preview Assets.xcassets */; };
+		D6638EAC28B5FFEA0086F995 /* SuperSaguiDropTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EAB28B5FFEA0086F995 /* SuperSaguiDropTests.swift */; };
+		D6638EB628B5FFEA0086F995 /* SuperSaguiDropUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EB528B5FFEA0086F995 /* SuperSaguiDropUITests.swift */; };
+		D6638EB828B5FFEA0086F995 /* SuperSaguiDropUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EB728B5FFEA0086F995 /* SuperSaguiDropUITestsLaunchTests.swift */; };
+		D6638EC628B602920086F995 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EC528B602920086F995 /* MainView.swift */; };
+		D6638EC928B6031D0086F995 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EC828B6031D0086F995 /* CameraView.swift */; };
+		D6638ECC28B6036C0086F995 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638ECB28B6036C0086F995 /* Shapes.swift */; };
+		D6638ECE28B616930086F995 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638ECD28B616930086F995 /* CameraViewController.swift */; };
+		D6638ED328B61F7E0086F995 /* CameraViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638ED228B61F7E0086F995 /* CameraViewWrapper.swift */; };
+		D6638ED728B624890086F995 /* PoseEstimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638ED628B624890086F995 /* PoseEstimator.swift */; };
+		D6638EDB28B6339F0086F995 /* StickFigureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EDA28B6339F0086F995 /* StickFigureView.swift */; };
+		D6638EDE28B6458A0086F995 /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EDD28B6458A0086F995 /* CGPointExtension.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D6638EA828B5FFEA0086F995 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6638E8F28B5FFE80086F995 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D6638E9628B5FFE80086F995;
+			remoteInfo = FitnessVision;
+		};
+		D6638EB228B5FFEA0086F995 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D6638E8F28B5FFE80086F995 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D6638E9628B5FFE80086F995;
+			remoteInfo = FitnessVision;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		174308DC2B0694DA009BB00F /* FallingSpriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallingSpriteView.swift; sourceTree = "<group>"; };
+		174308DE2B069528009BB00F /* GameTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
+		174308E02B069550009BB00F /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
+		D6638E9728B5FFE80086F995 /* SuperSaguiDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperSaguiDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6638E9A28B5FFE80086F995 /* SuperSaguiDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSaguiDropApp.swift; sourceTree = "<group>"; };
+		D6638E9E28B5FFEA0086F995 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D6638EA128B5FFEA0086F995 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D6638EA728B5FFEA0086F995 /* SuperSaguiDropTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperSaguiDropTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6638EAB28B5FFEA0086F995 /* SuperSaguiDropTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSaguiDropTests.swift; sourceTree = "<group>"; };
+		D6638EB128B5FFEA0086F995 /* SuperSaguiDropUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperSaguiDropUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6638EB528B5FFEA0086F995 /* SuperSaguiDropUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSaguiDropUITests.swift; sourceTree = "<group>"; };
+		D6638EB728B5FFEA0086F995 /* SuperSaguiDropUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSaguiDropUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D6638EC528B602920086F995 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		D6638EC828B6031D0086F995 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		D6638ECB28B6036C0086F995 /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		D6638ECD28B616930086F995 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		D6638ED228B61F7E0086F995 /* CameraViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewWrapper.swift; sourceTree = "<group>"; };
+		D6638ED628B624890086F995 /* PoseEstimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseEstimator.swift; sourceTree = "<group>"; };
+		D6638EDA28B6339F0086F995 /* StickFigureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickFigureView.swift; sourceTree = "<group>"; };
+		D6638EDD28B6458A0086F995 /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D6638E9428B5FFE80086F995 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6638EA428B5FFEA0086F995 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6638EAE28B5FFEA0086F995 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D6638E8E28B5FFE80086F995 = {
+			isa = PBXGroup;
+			children = (
+				D6638E9928B5FFE80086F995 /* SuperSaguiDrop */,
+				D6638EAA28B5FFEA0086F995 /* SuperSaguiDropTests */,
+				D6638EB428B5FFEA0086F995 /* SuperSaguiDropUITests */,
+				D6638E9828B5FFE80086F995 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D6638E9828B5FFE80086F995 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6638E9728B5FFE80086F995 /* SuperSaguiDrop.app */,
+				D6638EA728B5FFEA0086F995 /* SuperSaguiDropTests.xctest */,
+				D6638EB128B5FFEA0086F995 /* SuperSaguiDropUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D6638E9928B5FFE80086F995 /* SuperSaguiDrop */ = {
+			isa = PBXGroup;
+			children = (
+				D6638EC428B602690086F995 /* Views */,
+				D6638ECA28B6034D0086F995 /* Shapes */,
+				D6638EC728B602CA0086F995 /* UIKit */,
+				D6638ED028B61F5B0086F995 /* Helper */,
+				D6638E9A28B5FFE80086F995 /* SuperSaguiDropApp.swift */,
+				D6638E9E28B5FFEA0086F995 /* Assets.xcassets */,
+				D6638EA028B5FFEA0086F995 /* Preview Content */,
+			);
+			path = SuperSaguiDrop;
+			sourceTree = "<group>";
+		};
+		D6638EA028B5FFEA0086F995 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D6638EA128B5FFEA0086F995 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D6638EAA28B5FFEA0086F995 /* SuperSaguiDropTests */ = {
+			isa = PBXGroup;
+			children = (
+				D6638EAB28B5FFEA0086F995 /* SuperSaguiDropTests.swift */,
+			);
+			path = SuperSaguiDropTests;
+			sourceTree = "<group>";
+		};
+		D6638EB428B5FFEA0086F995 /* SuperSaguiDropUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D6638EB528B5FFEA0086F995 /* SuperSaguiDropUITests.swift */,
+				D6638EB728B5FFEA0086F995 /* SuperSaguiDropUITestsLaunchTests.swift */,
+			);
+			path = SuperSaguiDropUITests;
+			sourceTree = "<group>";
+		};
+		D6638EC428B602690086F995 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D6638EC528B602920086F995 /* MainView.swift */,
+				174308E02B069550009BB00F /* DebugView.swift */,
+				174308DC2B0694DA009BB00F /* FallingSpriteView.swift */,
+				D6638EDA28B6339F0086F995 /* StickFigureView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D6638EC728B602CA0086F995 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				D6638EC828B6031D0086F995 /* CameraView.swift */,
+				D6638ECD28B616930086F995 /* CameraViewController.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		D6638ECA28B6034D0086F995 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				D6638ECB28B6036C0086F995 /* Shapes.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
+		D6638ED028B61F5B0086F995 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D6638EDC28B645080086F995 /* Extension */,
+				D6638ED528B6246A0086F995 /* Utility */,
+				D6638ED128B61F640086F995 /* Structure */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		D6638ED128B61F640086F995 /* Structure */ = {
+			isa = PBXGroup;
+			children = (
+				D6638ED228B61F7E0086F995 /* CameraViewWrapper.swift */,
+			);
+			path = Structure;
+			sourceTree = "<group>";
+		};
+		D6638ED528B6246A0086F995 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				174308DE2B069528009BB00F /* GameTimer.swift */,
+				D6638ED628B624890086F995 /* PoseEstimator.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		D6638EDC28B645080086F995 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D6638EDD28B6458A0086F995 /* CGPointExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D6638E9628B5FFE80086F995 /* SuperSaguiDrop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6638EBB28B5FFEA0086F995 /* Build configuration list for PBXNativeTarget "SuperSaguiDrop" */;
+			buildPhases = (
+				D6638E9328B5FFE80086F995 /* Sources */,
+				D6638E9428B5FFE80086F995 /* Frameworks */,
+				D6638E9528B5FFE80086F995 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SuperSaguiDrop;
+			productName = FitnessVision;
+			productReference = D6638E9728B5FFE80086F995 /* SuperSaguiDrop.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D6638EA628B5FFEA0086F995 /* SuperSaguiDropTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6638EBE28B5FFEA0086F995 /* Build configuration list for PBXNativeTarget "SuperSaguiDropTests" */;
+			buildPhases = (
+				D6638EA328B5FFEA0086F995 /* Sources */,
+				D6638EA428B5FFEA0086F995 /* Frameworks */,
+				D6638EA528B5FFEA0086F995 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D6638EA928B5FFEA0086F995 /* PBXTargetDependency */,
+			);
+			name = SuperSaguiDropTests;
+			productName = FitnessVisionTests;
+			productReference = D6638EA728B5FFEA0086F995 /* SuperSaguiDropTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D6638EB028B5FFEA0086F995 /* SuperSaguiDropUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6638EC128B5FFEA0086F995 /* Build configuration list for PBXNativeTarget "SuperSaguiDropUITests" */;
+			buildPhases = (
+				D6638EAD28B5FFEA0086F995 /* Sources */,
+				D6638EAE28B5FFEA0086F995 /* Frameworks */,
+				D6638EAF28B5FFEA0086F995 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D6638EB328B5FFEA0086F995 /* PBXTargetDependency */,
+			);
+			name = SuperSaguiDropUITests;
+			productName = FitnessVisionUITests;
+			productReference = D6638EB128B5FFEA0086F995 /* SuperSaguiDropUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D6638E8F28B5FFE80086F995 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					D6638E9628B5FFE80086F995 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					D6638EA628B5FFEA0086F995 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = D6638E9628B5FFE80086F995;
+					};
+					D6638EB028B5FFEA0086F995 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = D6638E9628B5FFE80086F995;
+					};
+				};
+			};
+			buildConfigurationList = D6638E9228B5FFE80086F995 /* Build configuration list for PBXProject "SuperSaguiDrop" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D6638E8E28B5FFE80086F995;
+			productRefGroup = D6638E9828B5FFE80086F995 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D6638E9628B5FFE80086F995 /* SuperSaguiDrop */,
+				D6638EA628B5FFEA0086F995 /* SuperSaguiDropTests */,
+				D6638EB028B5FFEA0086F995 /* SuperSaguiDropUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D6638E9528B5FFE80086F995 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6638EA228B5FFEA0086F995 /* Preview Assets.xcassets in Resources */,
+				D6638E9F28B5FFEA0086F995 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6638EA528B5FFEA0086F995 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6638EAF28B5FFEA0086F995 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D6638E9328B5FFE80086F995 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174308E12B069550009BB00F /* DebugView.swift in Sources */,
+				D6638EC628B602920086F995 /* MainView.swift in Sources */,
+				D6638EDB28B6339F0086F995 /* StickFigureView.swift in Sources */,
+				D6638EDE28B6458A0086F995 /* CGPointExtension.swift in Sources */,
+				174308DF2B069528009BB00F /* GameTimer.swift in Sources */,
+				D6638ECE28B616930086F995 /* CameraViewController.swift in Sources */,
+				D6638ECC28B6036C0086F995 /* Shapes.swift in Sources */,
+				D6638E9B28B5FFE80086F995 /* SuperSaguiDropApp.swift in Sources */,
+				D6638EC928B6031D0086F995 /* CameraView.swift in Sources */,
+				D6638ED328B61F7E0086F995 /* CameraViewWrapper.swift in Sources */,
+				D6638ED728B624890086F995 /* PoseEstimator.swift in Sources */,
+				174308DD2B0694DA009BB00F /* FallingSpriteView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6638EA328B5FFEA0086F995 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6638EAC28B5FFEA0086F995 /* SuperSaguiDropTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6638EAD28B5FFEA0086F995 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6638EB628B5FFEA0086F995 /* SuperSaguiDropUITests.swift in Sources */,
+				D6638EB828B5FFEA0086F995 /* SuperSaguiDropUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D6638EA928B5FFEA0086F995 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D6638E9628B5FFE80086F995 /* SuperSaguiDrop */;
+			targetProxy = D6638EA828B5FFEA0086F995 /* PBXContainerItemProxy */;
+		};
+		D6638EB328B5FFEA0086F995 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D6638E9628B5FFE80086F995 /* SuperSaguiDrop */;
+			targetProxy = D6638EB228B5FFEA0086F995 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D6638EB928B5FFEA0086F995 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D6638EBA28B5FFEA0086F995 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D6638EBC28B5FFEA0086F995 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SuperSaguiDrop/Preview Content\"";
+				DEVELOPMENT_TEAM = D3D2BJZUS3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_NSCameraUsageDescription = "cam needed";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samhodak.super-sagui-drop";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D6638EBD28B5FFEA0086F995 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SuperSaguiDrop/Preview Content\"";
+				DEVELOPMENT_TEAM = D3D2BJZUS3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_NSCameraUsageDescription = "cam needed";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samhodak.super-sagui-drop";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D6638EBF28B5FFEA0086F995 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SuperSaguiDrop.SuperSaguiDropTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperSaguiDrop.app/SuperSaguiDrop";
+			};
+			name = Debug;
+		};
+		D6638EC028B5FFEA0086F995 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SuperSaguiDrop.SuperSaguiDropTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperSaguiDrop.app/SuperSaguiDrop";
+			};
+			name = Release;
+		};
+		D6638EC228B5FFEA0086F995 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D3D2BJZUS3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samhodak.SuperSaguiDrop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SuperSaguiDrop;
+			};
+			name = Debug;
+		};
+		D6638EC328B5FFEA0086F995 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D3D2BJZUS3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samhodak.SuperSaguiDrop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SuperSaguiDrop;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D6638E9228B5FFE80086F995 /* Build configuration list for PBXProject "SuperSaguiDrop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6638EB928B5FFEA0086F995 /* Debug */,
+				D6638EBA28B5FFEA0086F995 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6638EBB28B5FFEA0086F995 /* Build configuration list for PBXNativeTarget "SuperSaguiDrop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6638EBC28B5FFEA0086F995 /* Debug */,
+				D6638EBD28B5FFEA0086F995 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6638EBE28B5FFEA0086F995 /* Build configuration list for PBXNativeTarget "SuperSaguiDropTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6638EBF28B5FFEA0086F995 /* Debug */,
+				D6638EC028B5FFEA0086F995 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6638EC128B5FFEA0086F995 /* Build configuration list for PBXNativeTarget "SuperSaguiDropUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6638EC228B5FFEA0086F995 /* Debug */,
+				D6638EC328B5FFEA0086F995 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D6638E8F28B5FFE80086F995 /* Project object */;
+}
