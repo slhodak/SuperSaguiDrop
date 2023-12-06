@@ -16,7 +16,8 @@ import SpriteKit
 
 struct MainView: View {
     @StateObject var poseEstimator = PoseEstimator()
-    @State private var sprites = [UUID: SKSpriteNode]()
+    @State private var saguis = [UUID: SKSpriteNode]()
+    @State private var onca: Onca?
     @State private var targetsTouched: Int = 0
 
     private let size: CGSize = CGSize(
@@ -40,7 +41,7 @@ struct MainView: View {
     
     var debugData: String {
         """
-        Sprite1: \(self.sprites.first?.value.position ?? CGPoint())
+        Sprite1: \(self.saguis.first?.value.position ?? CGPoint())
         """
     }
     
@@ -48,7 +49,7 @@ struct MainView: View {
         VStack {
             ZStack {
                 CameraViewWrapper(poseEstimator: poseEstimator)
-//                StickFigureView(poseEstimator: poseEstimator, size: size)
+                StickFigureView(poseEstimator: poseEstimator, size: size)
                 FallingSpriteView(scene: spriteScene)
 //                DebugView(debugData: debugData)
 //                    .font(.title2)
@@ -73,6 +74,7 @@ struct MainView: View {
     
     func onFrameUpdate() -> Void {
         self.handleCollisions()
+        self.runOncaLifecycle()
     }
     
     func gameTimedFunctions() -> Void {
@@ -89,7 +91,7 @@ struct MainView: View {
         let isSpecial = Float.random(in: 0...1) > 0.9
         let sprite = createSaguiSprite(special: isSpecial)
         
-        sprites[id] = sprite
+        saguis[id] = sprite
         spriteScene.addChild(sprite)
         
         if isSpecial {
@@ -99,7 +101,7 @@ struct MainView: View {
         
         // Remove sprite after it falls off the screen
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.1) {
-            sprites.removeValue(forKey: id)
+            saguis.removeValue(forKey: id)
             spriteScene.removeChildren(in: [sprite])
         }
     }
@@ -118,20 +120,10 @@ struct MainView: View {
     }
     
     func createOnca() {
-        let id = UUID()
-        let sprite = createOncaSprite()
-        
-        sprites[id] = sprite
-        spriteScene.addChild(sprite)
-        
-        let sequence = oncaActionSequence(sprite: sprite)
-        sprite.run(sequence)
-        
-        // Remove sprite after it falls off the screen
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.1) {
-            sprites.removeValue(forKey: id)
-            spriteScene.removeChildren(in: [sprite])
-        }
+        let onca = Onca(sprite: createOncaSprite())
+        self.onca = onca
+        spriteScene.addChild(onca.sprite)
+        onca.attack()
     }
     
     func createOncaSprite() -> SKSpriteNode {
@@ -146,24 +138,42 @@ struct MainView: View {
         
         return sprite
     }
-    
-    func oncaActionSequence(sprite: SKSpriteNode) -> SKAction {
-        let moveUp = SKAction.moveBy(
-            x: 0, y: sprite.size.height, duration: 1.0
-        )
-        let moveDown = SKAction.moveBy(
-            x: 0, y: -(sprite.size.height), duration: 1.0
-        )
+
+    func runOncaLifecycle() {
+        guard let onca = onca else {
+            return
+        }
         
-        return SKAction.sequence([moveUp, moveDown])
+        if onca.isExpired {
+            spriteScene.removeChildren(in: [onca.sprite])
+            self.onca = nil
+        } else if onca.canAttack() {
+            onca.attack()
+        }
     }
     
     func handleCollisions() {
-        for (spriteID, sprite) in sprites {
+        handleSaguiCollisions()
+        handleOncaCollisions()
+    }
+    
+    func handleSaguiCollisions() {
+        for (spriteID, sprite) in saguis {
             if eitherHandCollided(with: sprite) {
                 spriteScene.removeChildren(in: [sprite])
-                sprites.removeValue(forKey: spriteID)
+                saguis.removeValue(forKey: spriteID)
                 self.targetsTouched += 1
+            }
+        }
+    }
+    
+    func handleOncaCollisions() {
+        guard let onca = onca else {
+            return
+        }
+        if eitherHandCollided(with: onca.sprite) {
+            if onca.canBePetted() {
+                onca.bePetted()
             }
         }
     }
