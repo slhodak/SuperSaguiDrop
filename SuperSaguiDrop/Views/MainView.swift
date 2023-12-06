@@ -24,7 +24,7 @@ struct MainView: View {
         height: UIScreen.main.bounds.width * 1920 / 1080
     )
     private let gameTimer: GameTimer = GameTimer()
-    
+
     var spriteScene: SKScene = {
         let scene = SpriteScene()
         // Computed again because self.size is not available yet
@@ -76,29 +76,35 @@ struct MainView: View {
     }
     
     func gameTimedFunctions() -> Void {
-        createAnimatedSpriteWithTimer()
+        if self.gameTimer.gameTick % 2 == 0 {
+            createSagui()
+        }
+        if self.gameTimer.gameTick % 3 == 0 {
+            createOnca()
+        }
     }
     
-    func createAnimatedSpriteWithTimer() {
-        let newID = UUID()
+    func createSagui() {
+        let id = UUID()
         let isSpecial = Float.random(in: 0...1) > 0.9
-        let newSprite = createSagui(special: isSpecial)
+        let sprite = createSaguiSprite(special: isSpecial)
         
-        sprites[newID] = newSprite
-        spriteScene.addChild(newSprite)
+        sprites[id] = sprite
+        spriteScene.addChild(sprite)
         
         if isSpecial {
             let downwardImpulse = CGVector(dx: 0, dy: -150)
-            newSprite.physicsBody?.applyImpulse(downwardImpulse)
+            sprite.physicsBody?.applyImpulse(downwardImpulse)
         }
         
         // Remove sprite after it falls off the screen
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.1) {
-            sprites.removeValue(forKey: newID)
+            sprites.removeValue(forKey: id)
+            spriteScene.removeChildren(in: [sprite])
         }
     }
     
-    func createSagui(special: Bool = false) -> SKSpriteNode {
+    func createSaguiSprite(special: Bool = false) -> SKSpriteNode {
         let spriteFile = special ? "sagui-4" : "sagui-3"
         let sprite = SKSpriteNode(imageNamed: spriteFile)
         let randomX = CGFloat.random(in: 0...size.width)
@@ -109,6 +115,47 @@ struct MainView: View {
         sprite.physicsBody?.affectedByGravity = true
         
         return sprite
+    }
+    
+    func createOnca() {
+        let id = UUID()
+        let sprite = createOncaSprite()
+        
+        sprites[id] = sprite
+        spriteScene.addChild(sprite)
+        
+        let sequence = oncaActionSequence(sprite: sprite)
+        sprite.run(sequence)
+        
+        // Remove sprite after it falls off the screen
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.1) {
+            sprites.removeValue(forKey: id)
+            spriteScene.removeChildren(in: [sprite])
+        }
+    }
+    
+    func createOncaSprite() -> SKSpriteNode {
+        let sprite = SKSpriteNode(imageNamed: "onca_wild")
+        let randomX = CGFloat.random(in: 10...size.width-10)
+        
+        sprite.size = CGSize(width: 125, height: 150)
+        sprite.position = CGPoint(x: randomX, y: -(sprite.size.height * 0.5))
+        if randomX > self.size.width / 2 {
+            sprite.xScale = -1
+        }
+        
+        return sprite
+    }
+    
+    func oncaActionSequence(sprite: SKSpriteNode) -> SKAction {
+        let moveUp = SKAction.moveBy(
+            x: 0, y: sprite.size.height, duration: 1.0
+        )
+        let moveDown = SKAction.moveBy(
+            x: 0, y: -(sprite.size.height), duration: 1.0
+        )
+        
+        return SKAction.sequence([moveUp, moveDown])
     }
     
     func handleCollisions() {

@@ -11,8 +11,11 @@ import SwiftUI
 
 class GameTimer {
     private var timer: Timer?
-    private let timerQueue = DispatchQueue(label: "com.samhodak.mirrorme.timer", qos: .background)
+    private let timerQueue = DispatchQueue(
+        label: "com.samhodak.super-sagui-drop.timer",
+        qos: .background)
     var gameTimedFunctions: (() -> Void)?
+    var gameTick: Int = 0
 
     private let size: CGSize = UIScreen.main.bounds.size
     
@@ -29,7 +32,7 @@ class GameTimer {
                     guard let this = self else {
                         return
                     }
-                    (this.gameTimedFunctions ?? {})()
+                    this.handleGameTick()
                 }
             }
             
@@ -38,6 +41,11 @@ class GameTimer {
             
             runLoop.run()
         }
+    }
+
+    func handleGameTick() -> Void {
+        (self.gameTimedFunctions ?? {})()
+        gameTick += 1
     }
     
     func stopTimer() {
