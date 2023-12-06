@@ -18,10 +18,7 @@ struct MainView: View {
     @StateObject var poseEstimator = PoseEstimator()
     @State private var sprites = [UUID: SKSpriteNode]()
     @State private var targetsTouched: Int = 0
-    
-    @State private var rightWristPosition: CGPoint?
-    @State private var leftWristPosition: CGPoint?
-    
+
     private let size: CGSize = CGSize(
         width: UIScreen.main.bounds.width,
         height: UIScreen.main.bounds.width * 1920 / 1080
@@ -30,7 +27,7 @@ struct MainView: View {
     
     var spriteScene: SKScene = {
         let scene = SpriteScene()
-        // Computed again because size above is not available ("self" not available)
+        // Computed again because self.size is not available yet
         scene.size = CGSize(
             width: UIScreen.main.bounds.width,
             height: UIScreen.main.bounds.width * 1920 / 1080
@@ -43,10 +40,6 @@ struct MainView: View {
     
     var debugData: String {
         """
-        LeftWrist x: \(round(leftWristPosition?.x ?? 0)) y: \(round(leftWristPosition?.y ?? 0)) \
-        
-        RightWrist: x: \(round(rightWristPosition?.x ?? 0)) y: \(round(rightWristPosition?.y ?? 0)) \
-        
         Sprite1: \(self.sprites.first?.value.position ?? CGPoint())
         """
     }
@@ -57,9 +50,9 @@ struct MainView: View {
                 CameraViewWrapper(poseEstimator: poseEstimator)
 //                StickFigureView(poseEstimator: poseEstimator, size: size)
                 FallingSpriteView(scene: spriteScene)
-                //                DebugView(debugData: debugData)
-                //                    .font(.title2)
-                //                    .foregroundStyle(.white)
+//                DebugView(debugData: debugData)
+//                    .font(.title2)
+//                    .foregroundStyle(.white)
             }.frame(
                 width: size.width,
                 height: size.height,
@@ -79,10 +72,7 @@ struct MainView: View {
     }
     
     func onFrameUpdate() -> Void {
-        self.updateWristPositions()
-        if self.checkForCollisions() {
-            self.targetsTouched += 1
-        }
+        self.handleCollisions()
     }
     
     func gameTimedFunctions() -> Void {
@@ -121,34 +111,26 @@ struct MainView: View {
         return sprite
     }
     
-    func updateWristPositions() {
-        for (joint, vnPoint) in poseEstimator.detectedJoints {
-            if joint == .leftWrist {
-                leftWristPosition = scaleVNPointToSpriteView(vnPoint: vnPoint)
-            } else if joint == .rightWrist {
-                rightWristPosition = scaleVNPointToSpriteView(vnPoint: vnPoint)
-            }
-        }
-    }
-    
-    func checkForCollisions() -> Bool {
+    func handleCollisions() {
         for (spriteID, sprite) in sprites {
-            // Assuming you have a dictionary 'handJointsPositions' containing all hand joint positions
-            if checkForHandCollision(sprite: sprite, handLandmarks: poseEstimator.handLandmarksA) {
+            if eitherHandCollided(with: sprite) {
                 spriteScene.removeChildren(in: [sprite])
                 sprites.removeValue(forKey: spriteID)
-                return true
-            }
-            if checkForHandCollision(sprite: sprite, handLandmarks: poseEstimator.handLandmarksB) {
-                spriteScene.removeChildren(in: [sprite])
-                sprites.removeValue(forKey: spriteID)
-                return true
+                self.targetsTouched += 1
             }
         }
-        return false
     }
     
-    func checkForHandCollision(sprite: SKSpriteNode, handLandmarks: [VNHumanHandPoseObservation.JointName: VNRecognizedPoint]) -> Bool {
+    func eitherHandCollided(with sprite: SKSpriteNode) -> Bool {
+        return handCollided(
+                    with: sprite,
+                    handLandmarks: poseEstimator.handLandmarksA) ||
+                handCollided(
+                    with: sprite,
+                    handLandmarks: poseEstimator.handLandmarksB)
+    }
+    
+    func handCollided(with sprite: SKSpriteNode, handLandmarks: [VNHumanHandPoseObservation.JointName: VNRecognizedPoint]) -> Bool {
         for (_, jointPosition) in poseEstimator.handLandmarksA {
             let jointPositionSpriteXY = scaleVNPointToSpriteView(vnPoint: jointPosition)
             let distance = hypot(
@@ -162,36 +144,6 @@ struct MainView: View {
         }
         return false
     }
-    
-    //    func checkForCollisions() -> Bool {
-    //        for (spriteID, sprite) in sprites {
-    //            if let leftWristPosition = leftWristPosition {
-    //                let leftWristDistance = hypot(
-    //                    leftWristPosition.x - sprite.position.x,
-    //                    leftWristPosition.y - sprite.position.y
-    //                )
-    //
-    //                if leftWristDistance < 30 {
-    //                    spriteScene.removeChildren(in: [sprite])
-    //                    sprites.removeValue(forKey: spriteID)
-    //                    return true
-    //                }
-    //            }
-    //
-    //            if let rightWristPosition = rightWristPosition {
-    //                let rightWristDistance = hypot(
-    //                    rightWristPosition.x - sprite.position.x,
-    //                    rightWristPosition.y - sprite.position.y
-    //                )
-    //                if rightWristDistance < 30 {
-    //                    spriteScene.removeChildren(in: [sprite])
-    //                    sprites.removeValue(forKey: spriteID)
-    //                    return true
-    //                }
-    //            }
-    //        }
-    //        return false
-    //    }
     
     func scaleVNPointToSpriteView(vnPoint: VNPoint) -> CGPoint {
         return CGPoint(

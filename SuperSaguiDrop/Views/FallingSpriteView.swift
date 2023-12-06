@@ -24,11 +24,4 @@ struct FallingSpriteView: View {
 }
 
 class SpriteScene: SKScene {
-    override func didMove(to view: SKView) {
-        // Initialize and add sprite
-    }
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Here you can access the current position of mySprite
-    }
 }

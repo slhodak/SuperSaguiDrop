@@ -8,33 +8,6 @@
 import Foundation
 import SwiftUI
 
-struct Stick: Shape {
-    var points: [CGPoint]
-    var size: CGSize
-    
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        if points.isEmpty {
-            return transformed(path: path)
-        }
-        
-        path.move(to: points[0])
-        for point in points {
-            path.addLine(to: point)
-        }
-        return transformed(path: path)
-    }
-    
-    private func transformed(path: Path) -> Path {
-        return path
-            .applying(
-                CGAffineTransform.identity.scaledBy(x: size.width, y: size.height))
-            .applying(
-                CGAffineTransform(scaleX: -1, y: -1)
-                    .translatedBy(x: -size.width, y: -size.height))
-    }
-}
-
 
 struct Dot: Shape {
     var points: [CGPoint]
