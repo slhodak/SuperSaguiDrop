@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		174308DD2B0694DA009BB00F /* FallingSpriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308DC2B0694DA009BB00F /* FallingSpriteView.swift */; };
+		170EFF4B2B22150E00790708 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170EFF4A2B22150E00790708 /* HUDView.swift */; };
+		174308DD2B0694DA009BB00F /* InteractiveSpritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308DC2B0694DA009BB00F /* InteractiveSpritesView.swift */; };
 		174308DF2B069528009BB00F /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308DE2B069528009BB00F /* GameTimer.swift */; };
 		174308E12B069550009BB00F /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308E02B069550009BB00F /* DebugView.swift */; };
 		D6638E9B28B5FFE80086F995 /* SuperSaguiDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638E9A28B5FFE80086F995 /* SuperSaguiDropApp.swift */; };
@@ -44,7 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		174308DC2B0694DA009BB00F /* FallingSpriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallingSpriteView.swift; sourceTree = "<group>"; };
+		170EFF4A2B22150E00790708 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
+		174308DC2B0694DA009BB00F /* InteractiveSpritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveSpritesView.swift; sourceTree = "<group>"; };
 		174308DE2B069528009BB00F /* GameTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
 		174308E02B069550009BB00F /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		D6638E9728B5FFE80086F995 /* SuperSaguiDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperSaguiDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,8 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				D6638EC528B602920086F995 /* MainView.swift */,
+				170EFF4A2B22150E00790708 /* HUDView.swift */,
 				174308E02B069550009BB00F /* DebugView.swift */,
-				174308DC2B0694DA009BB00F /* FallingSpriteView.swift */,
+				174308DC2B0694DA009BB00F /* InteractiveSpritesView.swift */,
 				D6638EDA28B6339F0086F995 /* StickFigureView.swift */,
 			);
 			path = Views;
@@ -349,12 +352,13 @@
 				D6638EDE28B6458A0086F995 /* CGPointExtension.swift in Sources */,
 				174308DF2B069528009BB00F /* GameTimer.swift in Sources */,
 				D6638ECE28B616930086F995 /* CameraViewController.swift in Sources */,
+				170EFF4B2B22150E00790708 /* HUDView.swift in Sources */,
 				D6638ECC28B6036C0086F995 /* Shapes.swift in Sources */,
 				D6638E9B28B5FFE80086F995 /* SuperSaguiDropApp.swift in Sources */,
 				D6638EC928B6031D0086F995 /* CameraView.swift in Sources */,
 				D6638ED328B61F7E0086F995 /* CameraViewWrapper.swift in Sources */,
 				D6638ED728B624890086F995 /* PoseEstimator.swift in Sources */,
-				174308DD2B0694DA009BB00F /* FallingSpriteView.swift in Sources */,
+				174308DD2B0694DA009BB00F /* InteractiveSpritesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

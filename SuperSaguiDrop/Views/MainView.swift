@@ -16,15 +16,17 @@ import SpriteKit
 
 struct MainView: View {
     @StateObject var poseEstimator = PoseEstimator()
-    @State private var sprites = [UUID: SKSpriteNode]()
-    @State private var targetsTouched: Int = 0
+    @State private var saguis = [UUID: SKSpriteNode]()
+    @State private var onca: Onca?
+    @State private var saguisCaught: Int = 0
+    @State private var oncasTamed: Int = 0
 
     private let size: CGSize = CGSize(
         width: UIScreen.main.bounds.width,
         height: UIScreen.main.bounds.width * 1920 / 1080
     )
     private let gameTimer: GameTimer = GameTimer()
-    
+
     var spriteScene: SKScene = {
         let scene = SpriteScene()
         // Computed again because self.size is not available yet
@@ -40,16 +42,19 @@ struct MainView: View {
     
     var debugData: String {
         """
-        Sprite1: \(self.sprites.first?.value.position ?? CGPoint())
+        Sprite1: \(self.saguis.first?.value.position ?? CGPoint())
         """
     }
     
     var body: some View {
         VStack {
+            HUDView(saguisCaught: saguisCaught, oncasTamed: oncasTamed)
             ZStack {
                 CameraViewWrapper(poseEstimator: poseEstimator)
-//                StickFigureView(poseEstimator: poseEstimator, size: size)
-                FallingSpriteView(scene: spriteScene)
+//                    .position(x: size.width / 2,
+//                              y: (size.height / 2) + 20)
+                StickFigureView(poseEstimator: poseEstimator, size: size)
+                InteractiveSpritesView(scene: spriteScene)
 //                DebugView(debugData: debugData)
 //                    .font(.title2)
 //                    .foregroundStyle(.white)
@@ -57,13 +62,6 @@ struct MainView: View {
                 width: size.width,
                 height: size.height,
                 alignment: .center)
-            
-            HStack {
-                Text("Points:")
-                    .font(.title)
-                Text(String(targetsTouched))
-                    .font(.title)
-            }
         }
         .onAppear() {
             self.gameTimer.gameTimedFunctions = gameTimedFunctions
@@ -73,32 +71,39 @@ struct MainView: View {
     
     func onFrameUpdate() -> Void {
         self.handleCollisions()
+        self.runOncaLifecycle()
     }
     
     func gameTimedFunctions() -> Void {
-        createAnimatedSpriteWithTimer()
+        if self.gameTimer.gameTick % 2 == 0 {
+            createSagui()
+        }
+        if self.onca == nil {
+            createOnca()
+        }
     }
     
-    func createAnimatedSpriteWithTimer() {
-        let newID = UUID()
+    func createSagui() {
+        let id = UUID()
         let isSpecial = Float.random(in: 0...1) > 0.9
-        let newSprite = createSagui(special: isSpecial)
+        let sprite = createSaguiSprite(special: isSpecial)
         
-        sprites[newID] = newSprite
-        spriteScene.addChild(newSprite)
+        saguis[id] = sprite
+        spriteScene.addChild(sprite)
         
         if isSpecial {
             let downwardImpulse = CGVector(dx: 0, dy: -150)
-            newSprite.physicsBody?.applyImpulse(downwardImpulse)
+            sprite.physicsBody?.applyImpulse(downwardImpulse)
         }
         
         // Remove sprite after it falls off the screen
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.1) {
-            sprites.removeValue(forKey: newID)
+            saguis.removeValue(forKey: id)
+            spriteScene.removeChildren(in: [sprite])
         }
     }
     
-    func createSagui(special: Bool = false) -> SKSpriteNode {
+    func createSaguiSprite(special: Bool = false) -> SKSpriteNode {
         let spriteFile = special ? "sagui-4" : "sagui-3"
         let sprite = SKSpriteNode(imageNamed: spriteFile)
         let randomX = CGFloat.random(in: 0...size.width)
@@ -111,12 +116,68 @@ struct MainView: View {
         return sprite
     }
     
+    func createOnca() {
+        self.onca = Onca(sprite: createOncaSprite())
+        guard let onca = self.onca else {
+            return
+        }
+        spriteScene.addChild(onca.sprite)
+        onca.attack()
+    }
+    
+    func createOncaSprite() -> SKSpriteNode {
+        let sprite = SKSpriteNode(imageNamed: "onca_wild")
+        let randomX = CGFloat.random(in: 10...size.width-10)
+        
+        sprite.size = Onca.wildSize
+        sprite.position = CGPoint(x: randomX, y: Onca.bottomY)
+        if randomX > self.size.width / 2 {
+            sprite.xScale = -1
+        }
+        
+        return sprite
+    }
+    
+    func runOncaLifecycle() {
+        guard let onca = onca else {
+            return
+        }
+        
+        if onca.isExpired {
+            spriteScene.removeChildren(in: [onca.sprite])
+            self.onca = nil
+        } else if onca.canAttack() {
+            onca.attack()
+        }
+    }
+    
     func handleCollisions() {
-        for (spriteID, sprite) in sprites {
+        handleSaguiCollisions()
+        handleOncaCollisions()
+    }
+    
+    func handleSaguiCollisions() {
+        for (spriteID, sprite) in saguis {
             if eitherHandCollided(with: sprite) {
                 spriteScene.removeChildren(in: [sprite])
-                sprites.removeValue(forKey: spriteID)
-                self.targetsTouched += 1
+                saguis.removeValue(forKey: spriteID)
+                saguisCaught += 1
+            }
+        }
+    }
+    
+    func handleOncaCollisions() {
+        guard let onca = onca else {
+            return
+        }
+        if eitherHandCollided(with: onca.sprite) {
+            if onca.canBePetted() {
+                onca.bePetted()
+                if onca.isTamed {
+                    onca.handleTamed()
+                    oncasTamed += 1
+                    self.onca = nil
+                }
             }
         }
     }
