@@ -30,7 +30,7 @@ struct StickFigureView: View {
         return Dot(points: points, size: size, dotRadius: 0.02)
             .fill(color)
     }
-
+    
     private func pointsForHand(landmarks: [VNHumanHandPoseObservation.JointName: VNRecognizedPoint]) -> [CGPoint] {
         var points = [CGPoint]()
         for (_, point) in landmarks {

@@ -195,7 +195,7 @@ struct MainView: View {
         let spriteX = sprite.position.x
         let spriteY = sprite.position.y
         
-        for (_, jointPosition) in poseEstimator.handLandmarksA {
+        for (_, jointPosition) in handLandmarks {
             let jointPositionSpriteXY = scaleVNPointToSpriteView(vnPoint: jointPosition)
             let distance = hypot(
                 jointPositionSpriteXY.x - spriteX,
