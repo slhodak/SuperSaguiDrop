@@ -97,10 +97,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D6638E8E28B5FFE80086F995 = {
+		170EFF502B22577A00790708 /* Creatures */ = {
 			isa = PBXGroup;
 			children = (
 				170EFF4E2B224E5800790708 /* Sagui.swift */,
+				170EFF4C2B22480100790708 /* Onca.swift */,
+			);
+			path = Creatures;
+			sourceTree = "<group>";
+		};
+		D6638E8E28B5FFE80086F995 = {
+			isa = PBXGroup;
+			children = (
 				D6638E9928B5FFE80086F995 /* SuperSaguiDrop */,
 				D6638EAA28B5FFEA0086F995 /* SuperSaguiDropTests */,
 				D6638EB428B5FFEA0086F995 /* SuperSaguiDropUITests */,
@@ -121,6 +129,7 @@
 		D6638E9928B5FFE80086F995 /* SuperSaguiDrop */ = {
 			isa = PBXGroup;
 			children = (
+				170EFF502B22577A00790708 /* Creatures */,
 				D6638EC428B602690086F995 /* Views */,
 				D6638ECA28B6034D0086F995 /* Shapes */,
 				D6638EC728B602CA0086F995 /* UIKit */,
@@ -164,7 +173,6 @@
 				170EFF4A2B22150E00790708 /* HUDView.swift */,
 				174308E02B069550009BB00F /* DebugView.swift */,
 				174308DC2B0694DA009BB00F /* InteractiveSpritesView.swift */,
-				170EFF4C2B22480100790708 /* Onca.swift */,
 				D6638EDA28B6339F0086F995 /* StickFigureView.swift */,
 			);
 			path = Views;

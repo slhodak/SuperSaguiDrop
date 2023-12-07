@@ -110,7 +110,7 @@ struct MainView: View {
     
     func createOnca() {
         let randomX = CGFloat.random(in: 10...size.width-10)
-        let facingLeft = randomX > size.width / 2
+        let facingLeft = randomX > (size.width / 2)
         let position = CGPoint(x: randomX, y: Onca.bottomY)
         self.onca = Onca(position: position, facingLeft: facingLeft)
         guard let onca = self.onca else { return }
@@ -120,11 +120,12 @@ struct MainView: View {
     }
     
     func runOncaLifecycle() {
-        guard let onca = onca else {
-            return
-        }
+        guard let onca = onca else { return }
         
-        if onca.isExpired {
+        if onca.cannotBeTamed {
+            spriteScene.removeChildren(in: [onca.sprite])
+            self.onca = nil
+        } else if onca.isExpired {
             spriteScene.removeChildren(in: [onca.sprite])
             self.onca = nil
         } else if onca.canAttack() {

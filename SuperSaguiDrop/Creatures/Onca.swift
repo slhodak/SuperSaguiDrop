@@ -14,18 +14,24 @@ class Onca {
     static var pettedSize = CGSize(width: 150, height: 175)
     static var tameSize = CGSize(width: 125, height: 150)
     static var bottomY = -(wildSize.height / 2)
+    static var maxAttacks = 4
+    static var petsToTame = 3
     
     var sprite: SKSpriteNode
     var id: UUID
-    var pets: Int = 0
-    var attacks: Int = 0
+    var petsRemaining: Int = Onca.petsToTame
+    var attacksRemaining: Int = Onca.maxAttacks
     var isAttacking: Bool = false
     var isBeingPetted: Bool = false
     var isExpired: Bool {
-        return attacks > 3
+        return attacksRemaining == 0
     }
     var isTamed: Bool {
-        return pets > 2
+        return petsRemaining == 0
+    }
+    // When it is too late to tame this Onca
+    var cannotBeTamed: Bool {
+        return attacksRemaining < petsRemaining
     }
     
     init(position: CGPoint, facingLeft: Bool) {
@@ -38,7 +44,7 @@ class Onca {
     func initializeSprite(position: CGPoint, facingLeft: Bool) {
         sprite.size = Onca.wildSize
         sprite.position = position
-        if !facingLeft {
+        if facingLeft {
             sprite.xScale = -1
         }
     }
@@ -77,9 +83,6 @@ class Onca {
     
     func attack() {
         let changeTextureDuration = 0.1
-        let upDuration = 1.0
-        let downDuration = 1.0
-        let totalDuration = upDuration + downDuration
         
         isAttacking = true
         
@@ -91,19 +94,17 @@ class Onca {
         )
         
         let ascendAction = SKAction.moveBy(
-            x: 0, y: Onca.wildSize.height, duration: upDuration
+            x: 0, y: Onca.wildSize.height, duration: 1.0
         )
         let descendAction = SKAction.moveBy(
-            x: 0, y: -(Onca.wildSize.height), duration: downDuration
+            x: 0, y: -(Onca.wildSize.height), duration: 1.0
         )
-        let sequence = SKAction.sequence([ascendAction, descendAction])
+        let sequence = SKAction.sequence([ascendAction, descendAction, SKAction.run({
+            self.isAttacking = false
+            self.attacksRemaining -= 1 // Attack not counted until animation completes
+        })])
         
         sprite.run(sequence)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + totalDuration, execute: {
-            self.isAttacking = false
-            self.attacks += 1
-        })
     }
     
     // Onca can only be petted if it is currently attacking
@@ -116,9 +117,6 @@ class Onca {
     
     func bePetted() {
         let changeTextureDuration = 0.1
-        let pauseDuration = 0.5
-        let descendDuration = 1.0
-        let totalDuration = changeTextureDuration + pauseDuration + descendDuration
         
         isAttacking = false
         isBeingPetted = true
@@ -130,19 +128,17 @@ class Onca {
             size: Onca.pettedSize
         )
         
-        let pauseAction = SKAction.wait(forDuration: pauseDuration)
+        let pauseAction = SKAction.wait(forDuration: 0.5)
         let descendAction = SKAction.move(
             to: CGPoint(x: sprite.position.x, y: Onca.bottomY),
-            duration: descendDuration
+            duration: 1.0
         )
-        let sequence = SKAction.sequence([pauseAction, descendAction])
+        let sequence = SKAction.sequence([pauseAction, descendAction, SKAction.run({
+            self.isBeingPetted = false
+        })])
         sprite.run(sequence)
         
-        pets += 1
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + totalDuration, execute: {
-            self.isBeingPetted = false
-        })
+        petsRemaining -= 1
     }
     
     func handleTamed(completion: @escaping () -> Void = {}) {
