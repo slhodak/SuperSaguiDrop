@@ -10,7 +10,7 @@ import AVFoundation
 import Vision
 import Combine
 
-class PoseEstimator: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, ObservableObject{
+class PoseEstimator: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, ObservableObject {
     @Published var handLandmarksA = [VNHumanHandPoseObservation.JointName: VNRecognizedPoint]()
     @Published var handLandmarksB = [VNHumanHandPoseObservation.JointName: VNRecognizedPoint]()
     
