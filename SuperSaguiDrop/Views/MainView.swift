@@ -64,7 +64,7 @@ struct MainView: View {
                 alignment: .center)
         }
         .onAppear() {
-            self.gameTimer.gameTimedFunctions = gameTimedFunctions
+            self.gameTimer.gameTickFunctions = gameTickFunctions
             self.poseEstimator.onFrameUpdate = onFrameUpdate
         }
     }
@@ -74,13 +74,17 @@ struct MainView: View {
         self.runOncaLifecycle()
     }
     
-    func gameTimedFunctions() -> Void {
-        if self.gameTimer.gameTick % 2 == 0 {
+    func gameTickFunctions() -> Void {
+        if shouldCreateSagui() {
             createSagui()
         }
-        if self.onca == nil {
+        if shouldCreateOnca() {
             createOnca()
         }
+    }
+    
+    func shouldCreateSagui() -> Bool {
+        return  self.gameTimer.gameTick % 2 == 0
     }
     
     func createSagui() {
@@ -114,6 +118,12 @@ struct MainView: View {
         sprite.physicsBody?.affectedByGravity = true
         
         return sprite
+    }
+    
+    func shouldCreateOnca() -> Bool {
+        if self.onca != nil { return false }
+        
+        return Int.random(in: 0...100) > 75
     }
     
     func createOnca() {
@@ -192,11 +202,15 @@ struct MainView: View {
     }
     
     func handCollided(with sprite: SKSpriteNode, handLandmarks: [VNHumanHandPoseObservation.JointName: VNRecognizedPoint]) -> Bool {
+        // Cache sprite coordinates to reduce property lookups within loop
+        let spriteX = sprite.position.x
+        let spriteY = sprite.position.y
+        
         for (_, jointPosition) in poseEstimator.handLandmarksA {
             let jointPositionSpriteXY = scaleVNPointToSpriteView(vnPoint: jointPosition)
             let distance = hypot(
-                jointPositionSpriteXY.x - sprite.position.x,
-                jointPositionSpriteXY.y - sprite.position.y
+                jointPositionSpriteXY.x - spriteX,
+                jointPositionSpriteXY.y - spriteY
             )
             
             if distance < 20 { // Collision threshold

@@ -14,7 +14,7 @@ class GameTimer {
     private let timerQueue = DispatchQueue(
         label: "com.samhodak.super-sagui-drop.timer",
         qos: .background)
-    var gameTimedFunctions: (() -> Void)?
+    var gameTickFunctions: (() -> Void)?
     var gameTick: Int = 0
 
     private let size: CGSize = UIScreen.main.bounds.size
@@ -44,7 +44,7 @@ class GameTimer {
     }
 
     func handleGameTick() -> Void {
-        (self.gameTimedFunctions ?? {})()
+        (self.gameTickFunctions ?? {})()
         gameTick += 1
     }
     
