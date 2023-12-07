@@ -148,19 +148,26 @@ struct MainView: View {
     }
     
     func handleOncaCollisions() {
-        guard let onca = onca else {
-            return
-        }
+        guard let onca = onca else { return }
+        
         if eitherHandCollided(with: onca.sprite) {
             if onca.canBePetted() {
                 onca.bePetted()
                 if onca.isTamed {
-                    onca.handleTamed()
-                    oncasTamed += 1
-                    self.onca = nil
+                    handleOncaTamed()
                 }
             }
         }
+    }
+    
+    func handleOncaTamed() {
+        guard let onca = onca else { return }
+        
+        oncasTamed += 1
+        onca.handleTamed(completion: {
+            spriteScene.removeChildren(in: [onca.sprite])
+            self.onca = nil
+        })
     }
     
     func eitherHandCollided(with sprite: SKSpriteNode) -> Bool {

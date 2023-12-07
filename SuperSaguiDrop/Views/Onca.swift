@@ -145,7 +145,7 @@ class Onca {
         })
     }
     
-    func handleTamed() {
+    func handleTamed(completion: @escaping () -> Void = {}) {
         sprite.removeAllActions()
         setSpriteTexture(
             imageName: "onca_tame",
@@ -154,11 +154,13 @@ class Onca {
         )
         
         let pauseAction = SKAction.wait(forDuration: 0.5)
-        let descendAction = SKAction.move(
-            to: CGPoint(x: 0, y: Onca.bottomY),
+        let shrinkAction = SKAction.scale(
+            to: 0.0001,
             duration: 1.0
         )
-        let sequence = SKAction.sequence([pauseAction, descendAction])
+        let sequence = SKAction.sequence([
+            pauseAction, shrinkAction, SKAction.run(completion)
+        ])
         sprite.run(sequence)
     }
 }
