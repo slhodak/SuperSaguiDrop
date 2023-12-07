@@ -18,7 +18,8 @@ struct MainView: View {
     @StateObject var poseEstimator = PoseEstimator()
     @State private var saguis = [UUID: SKSpriteNode]()
     @State private var onca: Onca?
-    @State private var targetsTouched: Int = 0
+    @State private var saguisCaught: Int = 0
+    @State private var oncasTamed: Int = 0
 
     private let size: CGSize = CGSize(
         width: UIScreen.main.bounds.width,
@@ -47,10 +48,13 @@ struct MainView: View {
     
     var body: some View {
         VStack {
+            HUDView(saguisCaught: saguisCaught, oncasTamed: oncasTamed)
             ZStack {
                 CameraViewWrapper(poseEstimator: poseEstimator)
+//                    .position(x: size.width / 2,
+//                              y: (size.height / 2) + 20)
                 StickFigureView(poseEstimator: poseEstimator, size: size)
-                FallingSpriteView(scene: spriteScene)
+                InteractiveSpritesView(scene: spriteScene)
 //                DebugView(debugData: debugData)
 //                    .font(.title2)
 //                    .foregroundStyle(.white)
@@ -58,13 +62,6 @@ struct MainView: View {
                 width: size.width,
                 height: size.height,
                 alignment: .center)
-            
-            HStack {
-                Text("Points:")
-                    .font(.title)
-                Text(String(targetsTouched))
-                    .font(.title)
-            }
         }
         .onAppear() {
             self.gameTimer.gameTimedFunctions = gameTimedFunctions
@@ -81,7 +78,7 @@ struct MainView: View {
         if self.gameTimer.gameTick % 2 == 0 {
             createSagui()
         }
-        if self.gameTimer.gameTick % 3 == 0 {
+        if self.onca == nil {
             createOnca()
         }
     }
@@ -120,8 +117,10 @@ struct MainView: View {
     }
     
     func createOnca() {
-        let onca = Onca(sprite: createOncaSprite())
-        self.onca = onca
+        self.onca = Onca(sprite: createOncaSprite())
+        guard let onca = self.onca else {
+            return
+        }
         spriteScene.addChild(onca.sprite)
         onca.attack()
     }
@@ -130,15 +129,15 @@ struct MainView: View {
         let sprite = SKSpriteNode(imageNamed: "onca_wild")
         let randomX = CGFloat.random(in: 10...size.width-10)
         
-        sprite.size = CGSize(width: 125, height: 150)
-        sprite.position = CGPoint(x: randomX, y: -(sprite.size.height * 0.5))
+        sprite.size = Onca.wildSize
+        sprite.position = CGPoint(x: randomX, y: Onca.bottomY)
         if randomX > self.size.width / 2 {
             sprite.xScale = -1
         }
         
         return sprite
     }
-
+    
     func runOncaLifecycle() {
         guard let onca = onca else {
             return
@@ -162,7 +161,7 @@ struct MainView: View {
             if eitherHandCollided(with: sprite) {
                 spriteScene.removeChildren(in: [sprite])
                 saguis.removeValue(forKey: spriteID)
-                self.targetsTouched += 1
+                saguisCaught += 1
             }
         }
     }
@@ -174,6 +173,11 @@ struct MainView: View {
         if eitherHandCollided(with: onca.sprite) {
             if onca.canBePetted() {
                 onca.bePetted()
+                if onca.isTamed {
+                    onca.handleTamed()
+                    oncasTamed += 1
+                    self.onca = nil
+                }
             }
         }
     }
