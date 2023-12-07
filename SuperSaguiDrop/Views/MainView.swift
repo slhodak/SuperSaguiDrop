@@ -84,40 +84,22 @@ struct MainView: View {
     }
     
     func shouldCreateSagui() -> Bool {
-        return  self.gameTimer.gameTick % 2 == 0
+        return self.gameTimer.gameTick % 2 == 0
     }
     
     func createSagui() {
-        let id = UUID()
-        let isSpecial = Float.random(in: 0...1) > 0.9
-        let sprite = createSaguiSprite(special: isSpecial)
+        let randomX = CGFloat.random(in: 0...size.width)
+        let position = CGPoint(x: randomX, y: size.height + 200)
+        let sagui = Sagui(position: position)
         
-        saguis[id] = sprite
-        spriteScene.addChild(sprite)
-        
-        if isSpecial {
-            let downwardImpulse = CGVector(dx: 0, dy: -150)
-            sprite.physicsBody?.applyImpulse(downwardImpulse)
-        }
+        saguis[sagui.id] = sagui.sprite
+        spriteScene.addChild(sagui.sprite)
         
         // Remove sprite after it falls off the screen
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.1) {
-            saguis.removeValue(forKey: id)
-            spriteScene.removeChildren(in: [sprite])
+            saguis.removeValue(forKey: sagui.id)
+            spriteScene.removeChildren(in: [sagui.sprite])
         }
-    }
-    
-    func createSaguiSprite(special: Bool = false) -> SKSpriteNode {
-        let spriteFile = special ? "sagui-4" : "sagui-3"
-        let sprite = SKSpriteNode(imageNamed: spriteFile)
-        let randomX = CGFloat.random(in: 0...size.width)
-        
-        sprite.size = CGSize(width: 75, height: 75)
-        sprite.position = CGPoint(x: randomX, y: size.height + 200)
-        sprite.physicsBody = SKPhysicsBody(rectangleOf: sprite.size)
-        sprite.physicsBody?.affectedByGravity = true
-        
-        return sprite
     }
     
     func shouldCreateOnca() -> Bool {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		170EFF4B2B22150E00790708 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170EFF4A2B22150E00790708 /* HUDView.swift */; };
 		170EFF4D2B22480100790708 /* Onca.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170EFF4C2B22480100790708 /* Onca.swift */; };
+		170EFF4F2B224E5800790708 /* Sagui.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170EFF4E2B224E5800790708 /* Sagui.swift */; };
 		174308DD2B0694DA009BB00F /* InteractiveSpritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308DC2B0694DA009BB00F /* InteractiveSpritesView.swift */; };
 		174308DF2B069528009BB00F /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308DE2B069528009BB00F /* GameTimer.swift */; };
 		174308E12B069550009BB00F /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308E02B069550009BB00F /* DebugView.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		170EFF4A2B22150E00790708 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		170EFF4C2B22480100790708 /* Onca.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onca.swift; sourceTree = "<group>"; };
+		170EFF4E2B224E5800790708 /* Sagui.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sagui.swift; sourceTree = "<group>"; };
 		174308DC2B0694DA009BB00F /* InteractiveSpritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveSpritesView.swift; sourceTree = "<group>"; };
 		174308DE2B069528009BB00F /* GameTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
 		174308E02B069550009BB00F /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		D6638E8E28B5FFE80086F995 = {
 			isa = PBXGroup;
 			children = (
+				170EFF4E2B224E5800790708 /* Sagui.swift */,
 				D6638E9928B5FFE80086F995 /* SuperSaguiDrop */,
 				D6638EAA28B5FFEA0086F995 /* SuperSaguiDropTests */,
 				D6638EB428B5FFEA0086F995 /* SuperSaguiDropUITests */,
@@ -351,6 +354,7 @@
 			files = (
 				170EFF4D2B22480100790708 /* Onca.swift in Sources */,
 				174308E12B069550009BB00F /* DebugView.swift in Sources */,
+				170EFF4F2B224E5800790708 /* Sagui.swift in Sources */,
 				D6638EC628B602920086F995 /* MainView.swift in Sources */,
 				D6638EDB28B6339F0086F995 /* StickFigureView.swift in Sources */,
 				D6638EDE28B6458A0086F995 /* CGPointExtension.swift in Sources */,
