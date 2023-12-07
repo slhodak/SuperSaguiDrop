@@ -127,25 +127,14 @@ struct MainView: View {
     }
     
     func createOnca() {
-        self.onca = Onca(sprite: createOncaSprite())
-        guard let onca = self.onca else {
-            return
-        }
+        let randomX = CGFloat.random(in: 10...size.width-10)
+        let facingLeft = randomX > size.width / 2
+        let position = CGPoint(x: randomX, y: Onca.bottomY)
+        self.onca = Onca(position: position, facingLeft: facingLeft)
+        guard let onca = self.onca else { return }
+        
         spriteScene.addChild(onca.sprite)
         onca.attack()
-    }
-    
-    func createOncaSprite() -> SKSpriteNode {
-        let sprite = SKSpriteNode(imageNamed: "onca_wild")
-        let randomX = CGFloat.random(in: 10...size.width-10)
-        
-        sprite.size = Onca.wildSize
-        sprite.position = CGPoint(x: randomX, y: Onca.bottomY)
-        if randomX > self.size.width / 2 {
-            sprite.xScale = -1
-        }
-        
-        return sprite
     }
     
     func runOncaLifecycle() {

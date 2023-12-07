@@ -28,9 +28,19 @@ class Onca {
         return pets > 2
     }
     
-    init(sprite: SKSpriteNode) {
-        self.sprite = sprite
+    init(position: CGPoint, facingLeft: Bool) {
+        self.sprite = SKSpriteNode(imageNamed: "onca_wild")
         self.id = UUID()
+        
+        initializeSprite(position: position, facingLeft: facingLeft)
+    }
+    
+    func initializeSprite(position: CGPoint, facingLeft: Bool) {
+        sprite.size = Onca.wildSize
+        sprite.position = position
+        if !facingLeft {
+            sprite.xScale = -1
+        }
     }
     
     func setSpriteTexture(imageName: String, duration: Double, size: CGSize) {
