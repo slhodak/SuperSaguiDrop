@@ -105,7 +105,7 @@ struct MainView: View {
     func shouldCreateOnca() -> Bool {
         if self.onca != nil { return false }
         
-        return Int.random(in: 0...100) > 75
+        return Int.random(in: 0...100) > 80
     }
     
     func createOnca() {
