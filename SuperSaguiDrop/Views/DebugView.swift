@@ -15,5 +15,7 @@ struct DebugView: View {
     var body: some View {
         Text(debugData)
             .background(.black)
+            .font(.title2)
+            .foregroundStyle(.white)
     }
 }

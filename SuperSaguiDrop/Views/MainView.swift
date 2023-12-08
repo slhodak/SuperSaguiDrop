@@ -21,6 +21,8 @@ struct MainView: View {
     @State private var saguisCaught: Int = 0
     @State private var oncasTamed: Int = 0
     
+    var themeSongPlayer = ThemeSongPlayer()
+    
     private let size: CGSize = CGSize(
         width: UIScreen.main.bounds.width,
         height: UIScreen.main.bounds.width * 1920 / 1080
@@ -51,13 +53,9 @@ struct MainView: View {
             HUDView(saguisCaught: saguisCaught, oncasTamed: oncasTamed)
             ZStack {
                 CameraViewWrapper(poseEstimator: poseEstimator)
-//                    .position(x: size.width / 2,
-//                              y: (size.height / 2) + 20)
                 StickFigureView(poseEstimator: poseEstimator, size: size)
                 InteractiveSpritesView(scene: spriteScene)
 //                DebugView(debugData: debugData)
-//                    .font(.title2)
-//                    .foregroundStyle(.white)
             }.frame(
                 width: size.width,
                 height: size.height,
@@ -66,6 +64,10 @@ struct MainView: View {
         .onAppear() {
             self.gameTimer.gameTickFunctions = gameTickFunctions
             self.poseEstimator.onFrameUpdate = onFrameUpdate
+            self.themeSongPlayer.start()
+        }
+        .onDisappear() {
+            self.themeSongPlayer.stop()
         }
     }
     
