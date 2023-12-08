@@ -7,6 +7,7 @@
 
 import Foundation
 import SpriteKit
+import AVFoundation
 
 
 class Onca {
@@ -16,6 +17,8 @@ class Onca {
     static var bottomY = -(wildSize.height / 2)
     static var maxAttacks = 4
     static var petsToTame = 3
+    
+    var roarAudioPlayer: AVAudioPlayer?
     
     var sprite: SKSpriteNode
     var id: UUID
@@ -38,6 +41,7 @@ class Onca {
         self.sprite = SKSpriteNode(imageNamed: "onca_wild")
         self.id = UUID()
         
+        initRoarAudioPlayer()
         initializeSprite(position: position, facingLeft: facingLeft)
     }
     
@@ -104,6 +108,7 @@ class Onca {
             self.attacksRemaining -= 1 // Attack not counted until animation completes
         })])
         
+        roar()
         sprite.run(sequence)
     }
     
@@ -158,5 +163,29 @@ class Onca {
             pauseAction, shrinkAction, SKAction.run(completion)
         ])
         sprite.run(sequence)
+    }
+    
+    func roar() {
+        guard let audioPlayer = roarAudioPlayer else {
+            print("Audio player not ready")
+            return
+        }
+        
+        audioPlayer.play()
+    }
+    
+    func initRoarAudioPlayer() {
+        guard let path = Bundle.main.path(forResource: "SSD-onca-roar", ofType: "mp3") else {
+            print("Audio file not found")
+            return
+        }
+        
+        do {
+            let url = URL(fileURLWithPath: path)
+            roarAudioPlayer = try AVAudioPlayer(contentsOf: url)
+            roarAudioPlayer?.prepareToPlay()
+        } catch {
+            print("Error loading audio file: \(error.localizedDescription)")
+        }
     }
 }

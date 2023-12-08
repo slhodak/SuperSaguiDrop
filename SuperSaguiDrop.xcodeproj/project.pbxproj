@@ -10,6 +10,8 @@
 		170EFF4B2B22150E00790708 /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170EFF4A2B22150E00790708 /* HUDView.swift */; };
 		170EFF4D2B22480100790708 /* Onca.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170EFF4C2B22480100790708 /* Onca.swift */; };
 		170EFF4F2B224E5800790708 /* Sagui.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170EFF4E2B224E5800790708 /* Sagui.swift */; };
+		170EFF522B23642400790708 /* SSD-meow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 170EFF512B23642400790708 /* SSD-meow.mp3 */; };
+		170EFF552B23643A00790708 /* SSD-onca-roar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 170EFF542B23643A00790708 /* SSD-onca-roar.mp3 */; };
 		174308DD2B0694DA009BB00F /* InteractiveSpritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308DC2B0694DA009BB00F /* InteractiveSpritesView.swift */; };
 		174308DF2B069528009BB00F /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308DE2B069528009BB00F /* GameTimer.swift */; };
 		174308E12B069550009BB00F /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308E02B069550009BB00F /* DebugView.swift */; };
@@ -50,6 +52,8 @@
 		170EFF4A2B22150E00790708 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		170EFF4C2B22480100790708 /* Onca.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onca.swift; sourceTree = "<group>"; };
 		170EFF4E2B224E5800790708 /* Sagui.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sagui.swift; sourceTree = "<group>"; };
+		170EFF512B23642400790708 /* SSD-meow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "SSD-meow.mp3"; sourceTree = "<group>"; };
+		170EFF542B23643A00790708 /* SSD-onca-roar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "SSD-onca-roar.mp3"; sourceTree = "<group>"; };
 		174308DC2B0694DA009BB00F /* InteractiveSpritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveSpritesView.swift; sourceTree = "<group>"; };
 		174308DE2B069528009BB00F /* GameTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
 		174308E02B069550009BB00F /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
@@ -106,9 +110,19 @@
 			path = Creatures;
 			sourceTree = "<group>";
 		};
+		170EFF532B23642A00790708 /* SFX */ = {
+			isa = PBXGroup;
+			children = (
+				170EFF542B23643A00790708 /* SSD-onca-roar.mp3 */,
+				170EFF512B23642400790708 /* SSD-meow.mp3 */,
+			);
+			path = SFX;
+			sourceTree = "<group>";
+		};
 		D6638E8E28B5FFE80086F995 = {
 			isa = PBXGroup;
 			children = (
+				170EFF532B23642A00790708 /* SFX */,
 				D6638E9928B5FFE80086F995 /* SuperSaguiDrop */,
 				D6638EAA28B5FFEA0086F995 /* SuperSaguiDropTests */,
 				D6638EB428B5FFEA0086F995 /* SuperSaguiDropUITests */,
@@ -334,8 +348,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				170EFF552B23643A00790708 /* SSD-onca-roar.mp3 in Resources */,
 				D6638EA228B5FFEA0086F995 /* Preview Assets.xcassets in Resources */,
 				D6638E9F28B5FFEA0086F995 /* Assets.xcassets in Resources */,
+				170EFF522B23642400790708 /* SSD-meow.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

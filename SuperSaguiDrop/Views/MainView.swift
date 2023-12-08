@@ -20,13 +20,13 @@ struct MainView: View {
     @State private var onca: Onca?
     @State private var saguisCaught: Int = 0
     @State private var oncasTamed: Int = 0
-
+    
     private let size: CGSize = CGSize(
         width: UIScreen.main.bounds.width,
         height: UIScreen.main.bounds.width * 1920 / 1080
     )
     private let gameTimer: GameTimer = GameTimer()
-
+    
     var spriteScene: SKScene = {
         let scene = SpriteScene()
         // Computed again because self.size is not available yet
