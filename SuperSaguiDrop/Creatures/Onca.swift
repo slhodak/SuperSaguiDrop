@@ -18,7 +18,9 @@ class Onca {
     static var maxAttacks = 4
     static var petsToTame = 3
     
-    var roarAudioPlayer: AVAudioPlayer?
+    static var roarSound = "SSD-onca-roar"
+    static var meowSound = "SSD-meow"
+    var audioPlayers: [String: AVAudioPlayer] = [:]
     
     var sprite: SKSpriteNode
     var id: UUID
@@ -41,8 +43,37 @@ class Onca {
         self.sprite = SKSpriteNode(imageNamed: "onca_wild")
         self.id = UUID()
         
-        initRoarAudioPlayer()
+        initAudioPlayers()
         initializeSprite(position: position, facingLeft: facingLeft)
+    }
+    
+    func initAudioPlayers() {
+        initAudioPlayer(soundName: Onca.roarSound, fileType: "mp3")
+        initAudioPlayer(soundName: Onca.meowSound, fileType: "mp3")
+    }
+    
+    func initAudioPlayer(soundName: String, fileType: String) {
+        guard let path = Bundle.main.path(forResource: soundName, ofType: fileType) else {
+            print("Audio file not found")
+            return
+        }
+        
+        do {
+            let url = URL(fileURLWithPath: path)
+            audioPlayers[soundName] = try AVAudioPlayer(contentsOf: url)
+            audioPlayers[soundName]?.prepareToPlay()
+        } catch {
+            print("Error loading audio file: \(error.localizedDescription)")
+        }
+    }
+    
+    func playSound(_ soundName: String) {
+        guard let audioPlayer = audioPlayers[soundName] else {
+            print("Audio player not found for '\(soundName)'")
+            return
+        }
+        
+        audioPlayer.play()
     }
     
     func initializeSprite(position: CGPoint, facingLeft: Bool) {
@@ -108,7 +139,7 @@ class Onca {
             self.attacksRemaining -= 1 // Attack not counted until animation completes
         })])
         
-        roar()
+        playSound(Onca.roarSound)
         sprite.run(sequence)
     }
     
@@ -147,6 +178,7 @@ class Onca {
     }
     
     func handleTamed(completion: @escaping () -> Void = {}) {
+        playSound(Onca.meowSound)
         sprite.removeAllActions()
         setSpriteTexture(
             imageName: "onca_tame",
@@ -163,29 +195,5 @@ class Onca {
             pauseAction, shrinkAction, SKAction.run(completion)
         ])
         sprite.run(sequence)
-    }
-    
-    func roar() {
-        guard let audioPlayer = roarAudioPlayer else {
-            print("Audio player not ready")
-            return
-        }
-        
-        audioPlayer.play()
-    }
-    
-    func initRoarAudioPlayer() {
-        guard let path = Bundle.main.path(forResource: "SSD-onca-roar", ofType: "mp3") else {
-            print("Audio file not found")
-            return
-        }
-        
-        do {
-            let url = URL(fileURLWithPath: path)
-            roarAudioPlayer = try AVAudioPlayer(contentsOf: url)
-            roarAudioPlayer?.prepareToPlay()
-        } catch {
-            print("Error loading audio file: \(error.localizedDescription)")
-        }
     }
 }
