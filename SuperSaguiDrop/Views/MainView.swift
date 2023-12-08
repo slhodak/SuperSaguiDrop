@@ -20,6 +20,9 @@ struct MainView: View {
     @State private var onca: Onca?
     @State private var saguisCaught: Int = 0
     @State private var oncasTamed: Int = 0
+    // Using @State to make struct properties mutable might not be ideal; consider classes to manage
+    @State private var saguiFrequency: Int = 4
+    @State private var oncaLikelihood: Int = 20
     
     var themeSongPlayer = ThemeSongPlayer()
     
@@ -77,16 +80,33 @@ struct MainView: View {
     }
     
     func gameTickFunctions() -> Void {
+        print ("\(NSDate().timeIntervalSince1970)")
         if shouldCreateSagui() {
             createSagui()
         }
         if shouldCreateOnca() {
             createOnca()
         }
+        if shouldIncreaseDifficulty() {
+            increaseDifficulty()
+        }
+    }
+    
+    func shouldIncreaseDifficulty() -> Bool {
+        return self.gameTimer.gameTick % 10 == 0
+    }
+    
+    func increaseDifficulty() {
+        if oncaLikelihood < 100 {
+            oncaLikelihood += 5
+        }
+        if saguiFrequency > 1 {
+            saguiFrequency -= 1
+        }
     }
     
     func shouldCreateSagui() -> Bool {
-        return self.gameTimer.gameTick % 2 == 0
+        return self.gameTimer.gameTick % saguiFrequency == 0
     }
     
     func createSagui() {
@@ -107,7 +127,7 @@ struct MainView: View {
     func shouldCreateOnca() -> Bool {
         if self.onca != nil { return false }
         
-        return Int.random(in: 0...100) > 80
+        return Int.random(in: 0...100) < oncaLikelihood
     }
     
     func createOnca() {

@@ -27,7 +27,7 @@ class GameTimer {
         timerQueue.async {
             let runLoop = RunLoop.current
             
-            let timer = Timer(timeInterval: 2, repeats: true) { [weak self] _ in
+            let timer = Timer(timeInterval: 1, repeats: true) { [weak self] _ in
                 DispatchQueue.main.async {
                     guard let this = self else {
                         return
