@@ -1,5 +1,7 @@
 .DS_STORE
 releases/*
+Music/*.mp3
+Music/*.wav
 
 UserInterfaceState.xcuserstate
 
