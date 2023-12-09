@@ -14,6 +14,7 @@
 		170EFF552B23643A00790708 /* SSD-onca-roar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 170EFF542B23643A00790708 /* SSD-onca-roar.mp3 */; };
 		170EFF572B2370F800790708 /* ThemeSongPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170EFF562B2370F800790708 /* ThemeSongPlayer.swift */; };
 		170EFF592B2371CA00790708 /* Randy Sharp - Jungle Boogie Woogie.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 170EFF582B2371CA00790708 /* Randy Sharp - Jungle Boogie Woogie.mp3 */; };
+		170EFF5B2B240CDB00790708 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170EFF5A2B240CDB00790708 /* MainView.swift */; };
 		174308DD2B0694DA009BB00F /* InteractiveSpritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308DC2B0694DA009BB00F /* InteractiveSpritesView.swift */; };
 		174308DF2B069528009BB00F /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308DE2B069528009BB00F /* GameTimer.swift */; };
 		174308E12B069550009BB00F /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174308E02B069550009BB00F /* DebugView.swift */; };
@@ -23,7 +24,7 @@
 		D6638EAC28B5FFEA0086F995 /* SuperSaguiDropTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EAB28B5FFEA0086F995 /* SuperSaguiDropTests.swift */; };
 		D6638EB628B5FFEA0086F995 /* SuperSaguiDropUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EB528B5FFEA0086F995 /* SuperSaguiDropUITests.swift */; };
 		D6638EB828B5FFEA0086F995 /* SuperSaguiDropUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EB728B5FFEA0086F995 /* SuperSaguiDropUITestsLaunchTests.swift */; };
-		D6638EC628B602920086F995 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EC528B602920086F995 /* MainView.swift */; };
+		D6638EC628B602920086F995 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EC528B602920086F995 /* GameView.swift */; };
 		D6638EC928B6031D0086F995 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EC828B6031D0086F995 /* CameraView.swift */; };
 		D6638ECC28B6036C0086F995 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638ECB28B6036C0086F995 /* Shapes.swift */; };
 		D6638ECE28B616930086F995 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638ECD28B616930086F995 /* CameraViewController.swift */; };
@@ -58,6 +59,7 @@
 		170EFF542B23643A00790708 /* SSD-onca-roar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "SSD-onca-roar.mp3"; sourceTree = "<group>"; };
 		170EFF562B2370F800790708 /* ThemeSongPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThemeSongPlayer.swift; path = SuperSaguiDrop/Helper/Utility/ThemeSongPlayer.swift; sourceTree = SOURCE_ROOT; };
 		170EFF582B2371CA00790708 /* Randy Sharp - Jungle Boogie Woogie.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Randy Sharp - Jungle Boogie Woogie.mp3"; path = "Music/Randy Sharp - Jungle Boogie Woogie.mp3"; sourceTree = SOURCE_ROOT; };
+		170EFF5A2B240CDB00790708 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		174308DC2B0694DA009BB00F /* InteractiveSpritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveSpritesView.swift; sourceTree = "<group>"; };
 		174308DE2B069528009BB00F /* GameTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
 		174308E02B069550009BB00F /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
@@ -70,7 +72,7 @@
 		D6638EB128B5FFEA0086F995 /* SuperSaguiDropUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperSaguiDropUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6638EB528B5FFEA0086F995 /* SuperSaguiDropUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSaguiDropUITests.swift; sourceTree = "<group>"; };
 		D6638EB728B5FFEA0086F995 /* SuperSaguiDropUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSaguiDropUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		D6638EC528B602920086F995 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		D6638EC528B602920086F995 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		D6638EC828B6031D0086F995 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		D6638ECB28B6036C0086F995 /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		D6638ECD28B616930086F995 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -188,12 +190,13 @@
 		D6638EC428B602690086F995 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D6638EC528B602920086F995 /* MainView.swift */,
+				170EFF5A2B240CDB00790708 /* MainView.swift */,
+				D6638EC528B602920086F995 /* GameView.swift */,
+				174308DC2B0694DA009BB00F /* InteractiveSpritesView.swift */,
 				170EFF562B2370F800790708 /* ThemeSongPlayer.swift */,
 				170EFF4A2B22150E00790708 /* HUDView.swift */,
-				174308E02B069550009BB00F /* DebugView.swift */,
-				174308DC2B0694DA009BB00F /* InteractiveSpritesView.swift */,
 				D6638EDA28B6339F0086F995 /* StickFigureView.swift */,
+				174308E02B069550009BB00F /* DebugView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -386,7 +389,7 @@
 				170EFF4D2B22480100790708 /* Onca.swift in Sources */,
 				174308E12B069550009BB00F /* DebugView.swift in Sources */,
 				170EFF4F2B224E5800790708 /* Sagui.swift in Sources */,
-				D6638EC628B602920086F995 /* MainView.swift in Sources */,
+				D6638EC628B602920086F995 /* GameView.swift in Sources */,
 				D6638EDB28B6339F0086F995 /* StickFigureView.swift in Sources */,
 				D6638EDE28B6458A0086F995 /* CGPointExtension.swift in Sources */,
 				174308DF2B069528009BB00F /* GameTimer.swift in Sources */,
@@ -394,6 +397,7 @@
 				D6638ECE28B616930086F995 /* CameraViewController.swift in Sources */,
 				170EFF4B2B22150E00790708 /* HUDView.swift in Sources */,
 				D6638ECC28B6036C0086F995 /* Shapes.swift in Sources */,
+				170EFF5B2B240CDB00790708 /* MainView.swift in Sources */,
 				D6638E9B28B5FFE80086F995 /* SuperSaguiDropApp.swift in Sources */,
 				D6638EC928B6031D0086F995 /* CameraView.swift in Sources */,
 				D6638ED328B61F7E0086F995 /* CameraViewWrapper.swift in Sources */,

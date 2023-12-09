@@ -1,230 +1,24 @@
 //
-//  SampleView.swift
-//  MirrorMe
+//  MainView.swift
+//  SuperSaguiDrop
 //
-//  Created by Sam Hodak
+//  Created by Sam Hodak on 12/8/23.
 //
 
 import Foundation
 import SwiftUI
-import AVFoundation
-import AVKit
-import Vision
-import Combine
-import CoreGraphics
-import SpriteKit
+
 
 struct MainView: View {
-    @StateObject var poseEstimator = PoseEstimator()
-    @State private var saguis = [UUID: SKSpriteNode]()
-    @State private var onca: Onca?
-    @State private var saguisCaught: Int = 0
-    @State private var oncasTamed: Int = 0
-    // Using @State to make struct properties mutable might not be ideal; consider classes to manage
-    @State private var saguiFrequency: Int = 4
-    @State private var oncaLikelihood: Int = 20
-    
-    var themeSongPlayer = ThemeSongPlayer()
-    
-    private let size: CGSize = CGSize(
-        width: UIScreen.main.bounds.width,
-        height: UIScreen.main.bounds.width * 1920 / 1080
-    )
-    private let gameTimer: GameTimer = GameTimer()
-    
-    var spriteScene: SKScene = {
-        let scene = SpriteScene()
-        // Computed again because self.size is not available yet
-        scene.size = CGSize(
-            width: UIScreen.main.bounds.width,
-            height: UIScreen.main.bounds.width * 1920 / 1080
-        )
-        scene.scaleMode = .fill
-        scene.backgroundColor = .clear
-        scene.physicsWorld.gravity = CGVector(dx: 0.0, dy: -2.5)
-        return scene
-    }()
-    
-    var debugData: String {
-        """
-        Sprite1: \(self.saguis.first?.value.position ?? CGPoint())
-        """
-    }
+    @State private var isGameRunning: Bool = false
     
     var body: some View {
-        VStack {
-            HUDView(saguisCaught: saguisCaught, oncasTamed: oncasTamed)
-            ZStack {
-                CameraViewWrapper(poseEstimator: poseEstimator)
-                StickFigureView(poseEstimator: poseEstimator, size: size)
-                InteractiveSpritesView(scene: spriteScene)
-//                DebugView(debugData: debugData)
-            }.frame(
-                width: size.width,
-                height: size.height,
-                alignment: .center)
-        }
-        .onAppear() {
-            self.gameTimer.gameTickFunctions = gameTickFunctions
-            self.poseEstimator.onFrameUpdate = onFrameUpdate
-            self.themeSongPlayer.start()
-        }
-        .onDisappear() {
-            self.themeSongPlayer.stop()
-        }
-    }
-    
-    func onFrameUpdate() -> Void {
-        self.handleCollisions()
-        self.runOncaLifecycle()
-    }
-    
-    func gameTickFunctions() -> Void {
-        print ("\(NSDate().timeIntervalSince1970)")
-        if shouldCreateSagui() {
-            createSagui()
-        }
-        if shouldCreateOnca() {
-            createOnca()
-        }
-        if shouldIncreaseDifficulty() {
-            increaseDifficulty()
-        }
-    }
-    
-    func shouldIncreaseDifficulty() -> Bool {
-        return self.gameTimer.gameTick % 10 == 0
-    }
-    
-    func increaseDifficulty() {
-        if oncaLikelihood < 100 {
-            oncaLikelihood += 5
-        }
-        if saguiFrequency > 1 {
-            saguiFrequency -= 1
-        }
-    }
-    
-    func shouldCreateSagui() -> Bool {
-        return self.gameTimer.gameTick % saguiFrequency == 0
-    }
-    
-    func createSagui() {
-        let randomX = CGFloat.random(in: 0...size.width)
-        let position = CGPoint(x: randomX, y: size.height + 200)
-        let sagui = Sagui(position: position)
-        
-        saguis[sagui.id] = sagui.sprite
-        spriteScene.addChild(sagui.sprite)
-        
-        // Remove sprite after it falls off the screen
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.1) {
-            saguis.removeValue(forKey: sagui.id)
-            spriteScene.removeChildren(in: [sagui.sprite])
-        }
-    }
-    
-    func shouldCreateOnca() -> Bool {
-        if self.onca != nil { return false }
-        
-        return Int.random(in: 0...100) < oncaLikelihood
-    }
-    
-    func createOnca() {
-        let randomX = CGFloat.random(in: 10...size.width-10)
-        let facingLeft = randomX > (size.width / 2)
-        let position = CGPoint(x: randomX, y: Onca.bottomY)
-        self.onca = Onca(position: position, facingLeft: facingLeft)
-        guard let onca = self.onca else { return }
-        
-        spriteScene.addChild(onca.sprite)
-        onca.attack()
-    }
-    
-    func runOncaLifecycle() {
-        guard let onca = onca else { return }
-        
-        if onca.cannotBeTamed {
-            spriteScene.removeChildren(in: [onca.sprite])
-            self.onca = nil
-        } else if onca.isExpired {
-            spriteScene.removeChildren(in: [onca.sprite])
-            self.onca = nil
-        } else if onca.canAttack() {
-            onca.attack()
-        }
-    }
-    
-    func handleCollisions() {
-        handleSaguiCollisions()
-        handleOncaCollisions()
-    }
-    
-    func handleSaguiCollisions() {
-        for (spriteID, sprite) in saguis {
-            if eitherHandCollided(with: sprite) {
-                spriteScene.removeChildren(in: [sprite])
-                saguis.removeValue(forKey: spriteID)
-                saguisCaught += 1
-            }
-        }
-    }
-    
-    func handleOncaCollisions() {
-        guard let onca = onca else { return }
-        
-        if eitherHandCollided(with: onca.sprite) {
-            if onca.canBePetted() {
-                onca.bePetted()
-                if onca.isTamed {
-                    handleOncaTamed()
+        NavigationView {
+            VStack {
+                NavigationLink(destination: GameView(isGameRunning: $isGameRunning)) {
+                    Text("Play").font(.title)
                 }
             }
         }
-    }
-    
-    func handleOncaTamed() {
-        guard let onca = onca else { return }
-        
-        oncasTamed += 1
-        onca.handleTamed(completion: {
-            spriteScene.removeChildren(in: [onca.sprite])
-            self.onca = nil
-        })
-    }
-    
-    func eitherHandCollided(with sprite: SKSpriteNode) -> Bool {
-        return handCollided(
-                    with: sprite,
-                    handLandmarks: poseEstimator.handLandmarksA) ||
-                handCollided(
-                    with: sprite,
-                    handLandmarks: poseEstimator.handLandmarksB)
-    }
-    
-    func handCollided(with sprite: SKSpriteNode, handLandmarks: [VNHumanHandPoseObservation.JointName: VNRecognizedPoint]) -> Bool {
-        // Cache sprite coordinates to reduce property lookups within loop
-        let spriteX = sprite.position.x
-        let spriteY = sprite.position.y
-        
-        for (_, jointPosition) in handLandmarks {
-            let jointPositionSpriteXY = scaleVNPointToSpriteView(vnPoint: jointPosition)
-            let distance = hypot(
-                jointPositionSpriteXY.x - spriteX,
-                jointPositionSpriteXY.y - spriteY
-            )
-            
-            if distance < 20 { // Collision threshold
-                return true
-            }
-        }
-        return false
-    }
-    
-    func scaleVNPointToSpriteView(vnPoint: VNPoint) -> CGPoint {
-        return CGPoint(
-            x: (1 - vnPoint.x) * size.width,
-            y: vnPoint.y * size.height
-        )
     }
 }
