@@ -92,6 +92,7 @@ struct GameView: View {
     func startGame() {
         gameTimer.gameTickFunctions = gameTickFunctions
         poseEstimator.onFrameUpdate = onFrameUpdate
+        gameTimer.startTimer()
         themeSongPlayer.start()
     }
     

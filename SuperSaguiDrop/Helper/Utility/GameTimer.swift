@@ -19,10 +19,6 @@ class GameTimer: ObservableObject {
 
     private let size: CGSize = UIScreen.main.bounds.size
     
-    init() {
-        startTimer()
-    }
-    
     func startTimer() {
         timerQueue.async {
             let runLoop = RunLoop.current
