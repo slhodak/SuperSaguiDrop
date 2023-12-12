@@ -21,6 +21,7 @@
 		17713D162B28B85C00E515C0 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17713D152B28B85C00E515C0 /* ScoreView.swift */; };
 		17713D182B28C4B400E515C0 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17713D172B28C4B400E515C0 /* GameState.swift */; };
 		17713D1A2B28C57600E515C0 /* TitleScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17713D192B28C57600E515C0 /* TitleScreenView.swift */; };
+		17713D1E2B28D2FE00E515C0 /* SSDNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17713D1D2B28D2FE00E515C0 /* SSDNumber.swift */; };
 		D6638E9B28B5FFE80086F995 /* SuperSaguiDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638E9A28B5FFE80086F995 /* SuperSaguiDropApp.swift */; };
 		D6638E9F28B5FFEA0086F995 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6638E9E28B5FFEA0086F995 /* Assets.xcassets */; };
 		D6638EA228B5FFEA0086F995 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6638EA128B5FFEA0086F995 /* Preview Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		17713D152B28B85C00E515C0 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		17713D172B28C4B400E515C0 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameState.swift; path = SuperSaguiDrop/Helper/Utility/GameState.swift; sourceTree = SOURCE_ROOT; };
 		17713D192B28C57600E515C0 /* TitleScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScreenView.swift; sourceTree = "<group>"; };
+		17713D1D2B28D2FE00E515C0 /* SSDNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSDNumber.swift; sourceTree = "<group>"; };
 		D6638E9728B5FFE80086F995 /* SuperSaguiDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperSaguiDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6638E9A28B5FFE80086F995 /* SuperSaguiDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSaguiDropApp.swift; sourceTree = "<group>"; };
 		D6638E9E28B5FFEA0086F995 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				170EFF5A2B240CDB00790708 /* MainView.swift */,
+				17713D1D2B28D2FE00E515C0 /* SSDNumber.swift */,
 				17713D192B28C57600E515C0 /* TitleScreenView.swift */,
 				D6638EC528B602920086F995 /* GameView.swift */,
 				174308DC2B0694DA009BB00F /* InteractiveSpritesView.swift */,
@@ -408,6 +411,7 @@
 				D6638ECE28B616930086F995 /* CameraViewController.swift in Sources */,
 				170EFF4B2B22150E00790708 /* HUDView.swift in Sources */,
 				D6638ECC28B6036C0086F995 /* Shapes.swift in Sources */,
+				17713D1E2B28D2FE00E515C0 /* SSDNumber.swift in Sources */,
 				17713D162B28B85C00E515C0 /* ScoreView.swift in Sources */,
 				170EFF5B2B240CDB00790708 /* MainView.swift in Sources */,
 				D6638E9B28B5FFE80086F995 /* SuperSaguiDropApp.swift in Sources */,
@@ -502,7 +506,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -557,7 +561,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

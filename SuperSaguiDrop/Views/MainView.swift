@@ -30,8 +30,6 @@ struct MainView: View {
                           saguisCaught: saguisCaught,
                           oncasTamed: oncasTamed,
                           gameTick: gameTimer.gameTick)
-            default:
-                TitleScreenView(gameState: $gameState)
             }
         }
     }

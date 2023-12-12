@@ -30,7 +30,7 @@ struct GameView: View {
     @State private var oncaLikelihood: Int = 20
     private var maxSaguisLost: Int = 3
     @State private var saguisLost: Int = 0
-
+    
     var themeSongPlayer = ThemeSongPlayer()
     
     private let size: CGSize = CGSize(

@@ -18,11 +18,11 @@ struct TitleScreenView: View {
     
     var body: some View {
         ZStack {
-            Color.green
+            Image("ssd-hills-background")
                 .ignoresSafeArea()
             
             VStack {
-                Image("ssd-logo-draft")
+                Image("ssd-logo-12dec23")
                     .resizable()
                     .frame(width: 400, height: 400)
                 
