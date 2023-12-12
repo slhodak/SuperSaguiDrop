@@ -20,6 +20,7 @@ class GameTimer: ObservableObject {
     private let size: CGSize = UIScreen.main.bounds.size
     
     func startTimer() {
+        resetTimer()
         timerQueue.async {
             let runLoop = RunLoop.current
             
@@ -38,17 +39,21 @@ class GameTimer: ObservableObject {
             runLoop.run()
         }
     }
-
-    func handleGameTick() -> Void {
-        (self.gameTickFunctions ?? {})()
-        gameTick += 1
-    }
     
     func stopTimer() {
         DispatchQueue.main.async {
             self.timer?.invalidate()
             self.timer = nil
         }
+    }
+    
+    func resetTimer() {
+        gameTick = 0
+    }
+
+    func handleGameTick() -> Void {
+        (self.gameTickFunctions ?? {})()
+        gameTick += 1
     }
     
     deinit {
