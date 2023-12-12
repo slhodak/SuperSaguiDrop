@@ -16,33 +16,37 @@ import SpriteKit
 
 
 struct GameView: View {
-    @Binding var isGameRunning: Bool
+    @Binding var gameState: GameState
+    @Binding var saguisCaught: Int
+    @Binding var oncasTamed: Int
+    var gameTimer: GameTimer
     
     @StateObject var poseEstimator = PoseEstimator()
     @State private var saguis = [UUID: Sagui]()
     @State private var onca: Onca?
-    @State private var saguisCaught: Int = 0
-    @State private var oncasTamed: Int = 0
+    
     // Using @State to make struct properties mutable might not be ideal; consider classes to manage
     @State private var saguiFrequency: Int = 4
     @State private var oncaLikelihood: Int = 20
     private var maxSaguisLost: Int = 3
     @State private var saguisLost: Int = 0
-    
-    func getScore() -> Int {
-        return saguisCaught + (oncasTamed * 4) + (gameTimer.gameTick / 4)
-    }
-    
+
     var themeSongPlayer = ThemeSongPlayer()
     
     private let size: CGSize = CGSize(
         width: UIScreen.main.bounds.width,
         height: UIScreen.main.bounds.width * 1920 / 1080
     )
-    private let gameTimer: GameTimer = GameTimer()
     
-    init(isGameRunning: Binding<Bool>) {
-        self._isGameRunning = isGameRunning
+    init(gameState: Binding<GameState>,
+         saguisCaught: Binding<Int>,
+         oncasTamed: Binding<Int>,
+         gameTimer: GameTimer) {
+        self._gameState = gameState
+        self._saguisCaught = saguisCaught
+        self._oncasTamed = oncasTamed
+        self.gameTimer = gameTimer
+        
     }
     
     var spriteScene: SKScene = {
@@ -86,7 +90,6 @@ struct GameView: View {
     }
     
     func startGame() {
-        isGameRunning = true
         gameTimer.gameTickFunctions = gameTickFunctions
         poseEstimator.onFrameUpdate = onFrameUpdate
         themeSongPlayer.start()
@@ -94,11 +97,11 @@ struct GameView: View {
     
     func stopGame() {
         themeSongPlayer.stop()
-        isGameRunning = false
+        gameState = GameState.score
     }
     
     func onFrameUpdate() -> Void {
-        if isGameRunning {
+        if gameState == GameState.playing {
             handleCollisions()
             runOncaLifecycle()
             removeLostSaguis()
@@ -108,12 +111,7 @@ struct GameView: View {
     
     func checkGameOver() -> Void {
         if gameIsOver() {
-            print("Game over!")
-            print("Saguis Saved: \(saguisCaught)")
-            print("Oncas Tamed: \(oncasTamed)")
-            print("Time Elapsed: \(gameTimer.gameTick)")
-            print("Score: \(getScore())")
-            isGameRunning = false
+            stopGame()
         }
     }
     
@@ -125,7 +123,7 @@ struct GameView: View {
     }
     
     func gameTickFunctions() -> Void {
-        if isGameRunning {
+        if gameState == GameState.playing {
             if shouldCreateSagui() {
                 createSagui()
             }

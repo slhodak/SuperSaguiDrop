@@ -35,7 +35,7 @@ class PoseEstimator: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, Obs
     
     func detectedHandPose(request: VNRequest, error: Error?) {
         guard let handPoseResults = request.results as? [VNHumanHandPoseObservation] else { return }
-        guard let firstHandObservation = handPoseResults.first else { return }
+        guard handPoseResults.first != nil else { return }
         
         DispatchQueue.main.async {
             self.handLandmarksA = [:]

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-class GameTimer {
+class GameTimer: ObservableObject {
     private var timer: Timer?
     private let timerQueue = DispatchQueue(
         label: "com.samhodak.super-sagui-drop.timer",

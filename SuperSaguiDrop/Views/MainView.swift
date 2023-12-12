@@ -10,27 +10,28 @@ import SwiftUI
 
 
 struct MainView: View {
-    @State private var isGameRunning: Bool = false
+    @State private var gameState: GameState = GameState.initial
+    @State var saguisCaught: Int = 0
+    @State var oncasTamed: Int = 0
+    @StateObject var gameTimer: GameTimer = GameTimer()
     
     var body: some View {
         NavigationStack {
-            ZStack {
-                Color.green
-                    .ignoresSafeArea()
-                
-                VStack {
-                    Image("ssd-logo-draft")
-                        .resizable()
-                        .frame(width: 400, height: 400)
-                    
-                    NavigationLink(destination: GameView(isGameRunning: $isGameRunning)) {
-                        Image("ssd-play-button")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 200)
-                            .padding(20)
-                    }
-                }
+            switch gameState {
+            case GameState.initial:
+                TitleScreenView(gameState: $gameState)
+            case GameState.playing:
+                GameView(gameState: $gameState,
+                         saguisCaught: $saguisCaught,
+                         oncasTamed: $oncasTamed,
+                         gameTimer: gameTimer)
+            case GameState.score:
+                ScoreView(gameState: $gameState,
+                          saguisCaught: saguisCaught,
+                          oncasTamed: oncasTamed,
+                          gameTick: gameTimer.gameTick)
+            default:
+                TitleScreenView(gameState: $gameState)
             }
         }
     }
