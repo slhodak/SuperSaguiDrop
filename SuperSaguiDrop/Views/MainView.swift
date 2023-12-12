@@ -14,18 +14,24 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            Image("ssd-logo-draft")
-                .resizable()
-                .frame(width: 400, height: 400)
-            
-            NavigationLink(destination: GameView(isGameRunning: $isGameRunning)) {
-                Image("ssd-play-button")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200)
-                    .padding(20)
+            ZStack {
+                Color.green
+                    .ignoresSafeArea()
+                
+                VStack {
+                    Image("ssd-logo-draft")
+                        .resizable()
+                        .frame(width: 400, height: 400)
+                    
+                    NavigationLink(destination: GameView(isGameRunning: $isGameRunning)) {
+                        Image("ssd-play-button")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200)
+                            .padding(20)
+                    }
+                }
             }
         }
-        .background(Color.green)
     }
 }
