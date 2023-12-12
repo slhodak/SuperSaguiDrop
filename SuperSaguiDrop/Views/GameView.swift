@@ -29,6 +29,10 @@ struct GameView: View {
     private var maxSaguisLost: Int = 3
     @State private var saguisLost: Int = 0
     
+    func getScore() -> Int {
+        return saguisCaught + (oncasTamed * 4) + (gameTimer.gameTick / 4)
+    }
+    
     var themeSongPlayer = ThemeSongPlayer()
     
     private let size: CGSize = CGSize(
@@ -56,7 +60,7 @@ struct GameView: View {
     
     var debugData: String {
         """
-        Sprite1: \(self.saguis.first?.value.sprite.position ?? CGPoint())
+        Sprite1: \(saguis.first?.value.sprite.position ?? CGPoint())
         """
     }
     
@@ -74,35 +78,42 @@ struct GameView: View {
                 alignment: .center)
         }
         .onAppear() {
-            self.startGame()
+            startGame()
         }
         .onDisappear() {
-            self.stopGame()
+            stopGame()
         }
     }
     
     func startGame() {
-        self.isGameRunning = true
-        self.gameTimer.gameTickFunctions = gameTickFunctions
-        self.poseEstimator.onFrameUpdate = onFrameUpdate
-        self.themeSongPlayer.start()
+        isGameRunning = true
+        gameTimer.gameTickFunctions = gameTickFunctions
+        poseEstimator.onFrameUpdate = onFrameUpdate
+        themeSongPlayer.start()
     }
     
     func stopGame() {
-        self.themeSongPlayer.stop()
-        self.isGameRunning = false
+        themeSongPlayer.stop()
+        isGameRunning = false
     }
     
     func onFrameUpdate() -> Void {
-        self.handleCollisions()
-        self.runOncaLifecycle()
-        self.removeLostSaguis()
-        self.checkGameOver()
+        if isGameRunning {
+            handleCollisions()
+            runOncaLifecycle()
+            removeLostSaguis()
+            checkGameOver()
+        }
     }
     
     func checkGameOver() -> Void {
         if gameIsOver() {
             print("Game over!")
+            print("Saguis Saved: \(saguisCaught)")
+            print("Oncas Tamed: \(oncasTamed)")
+            print("Time Elapsed: \(gameTimer.gameTick)")
+            print("Score: \(getScore())")
+            isGameRunning = false
         }
     }
     
@@ -114,19 +125,21 @@ struct GameView: View {
     }
     
     func gameTickFunctions() -> Void {
-        if shouldCreateSagui() {
-            createSagui()
-        }
-        if shouldCreateOnca() {
-            createOnca()
-        }
-        if shouldIncreaseDifficulty() {
-            increaseDifficulty()
+        if isGameRunning {
+            if shouldCreateSagui() {
+                createSagui()
+            }
+            if shouldCreateOnca() {
+                createOnca()
+            }
+            if shouldIncreaseDifficulty() {
+                increaseDifficulty()
+            }
         }
     }
     
     func shouldIncreaseDifficulty() -> Bool {
-        return self.gameTimer.gameTick % 10 == 0
+        return gameTimer.gameTick % 10 == 0
     }
     
     func increaseDifficulty() {
@@ -139,7 +152,7 @@ struct GameView: View {
     }
     
     func shouldCreateSagui() -> Bool {
-        return self.gameTimer.gameTick % saguiFrequency == 0
+        return gameTimer.gameTick % saguiFrequency == 0
     }
     
     func createSagui() {
@@ -166,7 +179,7 @@ struct GameView: View {
     }
     
     func shouldCreateOnca() -> Bool {
-        if self.onca != nil { return false }
+        if onca != nil { return false }
         
         return Int.random(in: 0...100) < oncaLikelihood
     }
