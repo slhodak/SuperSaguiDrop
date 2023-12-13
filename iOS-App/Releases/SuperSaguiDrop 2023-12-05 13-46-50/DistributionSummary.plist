@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SuperSaguiDrop.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>1</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>F2BA035B5FE591FD10D95BF712449E6938FEEBD9</string>
+				<key>dateExpires</key>
+				<string>12/4/24</string>
+				<key>type</key>
+				<string>Cloud Managed Apple Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>D3D2BJZUS3.com.samhodak.super-sagui-drop</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>D3D2BJZUS3</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>SuperSaguiDrop.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>06a62d68-8ae6-400e-87f8-f558045892c2</string>
+				<key>dateExpires</key>
+				<string>12/4/24</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: com.samhodak.super-sagui-drop</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>D3D2BJZUS3</string>
+				<key>name</key>
+				<string>Sam Hodak</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>1.0</string>
+		</dict>
+	</array>
+</dict>
+</plist>
