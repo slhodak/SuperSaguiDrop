@@ -16,7 +16,7 @@ const pool = new Pool({
 });
 
 async function insertScore(data) {
-  console.log(payload)
+  console.log(data)
   return
   const query = `
     INSERT INTO high_scores (user_name, time, saguis_saved, oncas_tamed, duration, total_score)
