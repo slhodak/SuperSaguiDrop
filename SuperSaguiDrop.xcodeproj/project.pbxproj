@@ -33,7 +33,7 @@
 		D6638ECC28B6036C0086F995 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638ECB28B6036C0086F995 /* Shapes.swift */; };
 		D6638ECE28B616930086F995 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638ECD28B616930086F995 /* CameraViewController.swift */; };
 		D6638ED328B61F7E0086F995 /* CameraViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638ED228B61F7E0086F995 /* CameraViewWrapper.swift */; };
-		D6638ED728B624890086F995 /* PoseEstimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638ED628B624890086F995 /* PoseEstimator.swift */; };
+		D6638ED728B624890086F995 /* HandTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638ED628B624890086F995 /* HandTracker.swift */; };
 		D6638EDB28B6339F0086F995 /* StickFigureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EDA28B6339F0086F995 /* StickFigureView.swift */; };
 		D6638EDE28B6458A0086F995 /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638EDD28B6458A0086F995 /* CGPointExtension.swift */; };
 /* End PBXBuildFile section */
@@ -85,7 +85,7 @@
 		D6638ECB28B6036C0086F995 /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		D6638ECD28B616930086F995 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		D6638ED228B61F7E0086F995 /* CameraViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewWrapper.swift; sourceTree = "<group>"; };
-		D6638ED628B624890086F995 /* PoseEstimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseEstimator.swift; sourceTree = "<group>"; };
+		D6638ED628B624890086F995 /* HandTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandTracker.swift; sourceTree = "<group>"; };
 		D6638EDA28B6339F0086F995 /* StickFigureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickFigureView.swift; sourceTree = "<group>"; };
 		D6638EDD28B6458A0086F995 /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -252,7 +252,7 @@
 				170EFF562B2370F800790708 /* ThemeSongPlayer.swift */,
 				17713D172B28C4B400E515C0 /* GameState.swift */,
 				174308DE2B069528009BB00F /* GameTimer.swift */,
-				D6638ED628B624890086F995 /* PoseEstimator.swift */,
+				D6638ED628B624890086F995 /* HandTracker.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -417,7 +417,7 @@
 				D6638E9B28B5FFE80086F995 /* SuperSaguiDropApp.swift in Sources */,
 				D6638EC928B6031D0086F995 /* CameraView.swift in Sources */,
 				D6638ED328B61F7E0086F995 /* CameraViewWrapper.swift in Sources */,
-				D6638ED728B624890086F995 /* PoseEstimator.swift in Sources */,
+				D6638ED728B624890086F995 /* HandTracker.swift in Sources */,
 				174308DD2B0694DA009BB00F /* InteractiveSpritesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
