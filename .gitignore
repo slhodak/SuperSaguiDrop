@@ -1,0 +1,6 @@
+.DS_STORE
+releases/*
+Music/*.mp3
+Music/*.wav
+
+iOS-App/SuperSaguiDrop.xcodeproj/project.xcworkspace/xcuserdata/samhodak.xcuserdatad/UserInterfaceState.xcuserstate

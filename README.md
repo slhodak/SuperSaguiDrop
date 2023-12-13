@@ -23,10 +23,10 @@ Super Sagui Drop is an iOS game that uses Apple's Vision Framework for hand-trac
 ### Images
 
 #### Home Screen
-<img src="./Images/SSD-homescreen.JPG" width="200">
+<img src="./examples/SSD-homescreen.JPG" width="200">
 
 #### Game Screen
-<img src="./Images/SSD-gamescreen.JPG" width="200" alt="Game Screen">
+<img src="./examples/SSD-gamescreen.JPG" width="200" alt="Game Screen">
 
 #### Score Screen
-<img src="./Images/SSD-scorescreen.JPG" width="200">
+<img src="./examples/SSD-scorescreen.JPG" width="200">
