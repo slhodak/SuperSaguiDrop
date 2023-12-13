@@ -70,17 +70,19 @@ struct GameView: View {
     
     var body: some View {
         VStack {
-            HUDView(saguisCaught: saguisCaught, oncasTamed: oncasTamed)
+            HUDView(handTracker: handTracker, saguisCaught: saguisCaught, oncasTamed: oncasTamed)
+            
             ZStack {
                 CameraViewWrapper(handTracker: handTracker)
-                StickFigureView(handTracker: handTracker, size: size)
+//                StickFigureView(handTracker: handTracker, size: size)
                 InteractiveSpritesView(scene: spriteScene)
-//                DebugView(debugData: debugData)
+                //                    DebugView(debugData: debugData)
             }.frame(
                 width: size.width,
                 height: size.height,
                 alignment: .center)
         }
+        .background(Image("2d-jungle"))
         .onAppear() {
             startGame()
         }
@@ -248,11 +250,11 @@ struct GameView: View {
     
     func eitherHandCollided(with sprite: SKSpriteNode) -> Bool {
         return handCollided(
-                    with: sprite,
-                    handLandmarks: handTracker.handLandmarksA) ||
-                handCollided(
-                    with: sprite,
-                    handLandmarks: handTracker.handLandmarksB)
+            with: sprite,
+            handLandmarks: handTracker.handLandmarksA) ||
+        handCollided(
+            with: sprite,
+            handLandmarks: handTracker.handLandmarksB)
     }
     
     func handCollided(with sprite: SKSpriteNode, handLandmarks: [VNHumanHandPoseObservation.JointName: VNRecognizedPoint]) -> Bool {

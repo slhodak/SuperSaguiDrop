@@ -17,6 +17,10 @@ class HandTracker: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, Obser
     let confidenceThreshold: Float = 0.5
     let sequenceHandler = VNSequenceRequestHandler()
     
+    var detectsAnyHands: Bool {
+        return !handLandmarksA.isEmpty || !handLandmarksB.isEmpty
+    }
+    
     var onFrameUpdate: (() -> Void)?
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
@@ -34,8 +38,12 @@ class HandTracker: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, Obser
     }
     
     func detectedHandPose(request: VNRequest, error: Error?) {
-        guard let handPoseResults = request.results as? [VNHumanHandPoseObservation] else { return }
-        guard handPoseResults.first != nil else { return }
+        guard let handPoseResults = request.results as? [VNHumanHandPoseObservation],
+              handPoseResults.first != nil else {
+            self.handLandmarksA = [:]
+            self.handLandmarksB = [:]
+            return
+        }
         
         DispatchQueue.main.async {
             self.handLandmarksA = [:]

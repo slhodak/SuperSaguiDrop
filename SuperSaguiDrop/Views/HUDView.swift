@@ -10,10 +10,13 @@ import SwiftUI
 
 
 struct HUDView: View {
+    @ObservedObject var handTracker: HandTracker
+    
     var saguisCaught: Int
     var oncasTamed: Int
     
-    init(saguisCaught: Int, oncasTamed: Int) {
+    init(handTracker: HandTracker, saguisCaught: Int, oncasTamed: Int) {
+        self.handTracker = handTracker
         self.saguisCaught = saguisCaught
         self.oncasTamed = oncasTamed
     }
@@ -29,7 +32,7 @@ struct HUDView: View {
                     .font(.title)
                     .foregroundStyle(Color.white)
             }
-            .padding([.leading], 15)
+            
             HStack {
                 Image("onca-face-icon")
                     .resizable()
@@ -39,8 +42,19 @@ struct HUDView: View {
                     .font(.title)
                     .foregroundStyle(Color.white)
             }
+            
             Spacer()
+            
+            handTracker.detectsAnyHands ?
+            Image("hand-icon")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 50) :
+            Image("dotted-hand-icon")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 50)
         }
-        .background(Image("2d-jungle").offset(x: 0, y: 275))
+        .padding([.leading, .trailing], 20)
     }
 }
