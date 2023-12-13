@@ -21,7 +21,7 @@ struct GameView: View {
     @Binding var oncasTamed: Int
     var gameTimer: GameTimer
     
-    @StateObject var poseEstimator = PoseEstimator()
+    @StateObject var handTracker = HandTracker()
     @State private var saguis = [UUID: Sagui]()
     @State private var onca: Onca?
     
@@ -72,8 +72,8 @@ struct GameView: View {
         VStack {
             HUDView(saguisCaught: saguisCaught, oncasTamed: oncasTamed)
             ZStack {
-                CameraViewWrapper(poseEstimator: poseEstimator)
-                StickFigureView(poseEstimator: poseEstimator, size: size)
+                CameraViewWrapper(handTracker: handTracker)
+                StickFigureView(handTracker: handTracker, size: size)
                 InteractiveSpritesView(scene: spriteScene)
 //                DebugView(debugData: debugData)
             }.frame(
@@ -91,7 +91,7 @@ struct GameView: View {
     
     func startGame() {
         gameTimer.gameTickFunctions = gameTickFunctions
-        poseEstimator.onFrameUpdate = onFrameUpdate
+        handTracker.onFrameUpdate = onFrameUpdate
         gameTimer.startTimer()
         themeSongPlayer.start()
     }
@@ -249,10 +249,10 @@ struct GameView: View {
     func eitherHandCollided(with sprite: SKSpriteNode) -> Bool {
         return handCollided(
                     with: sprite,
-                    handLandmarks: poseEstimator.handLandmarksA) ||
+                    handLandmarks: handTracker.handLandmarksA) ||
                 handCollided(
                     with: sprite,
-                    handLandmarks: poseEstimator.handLandmarksB)
+                    handLandmarks: handTracker.handLandmarksB)
     }
     
     func handCollided(with sprite: SKSpriteNode, handLandmarks: [VNHumanHandPoseObservation.JointName: VNRecognizedPoint]) -> Bool {

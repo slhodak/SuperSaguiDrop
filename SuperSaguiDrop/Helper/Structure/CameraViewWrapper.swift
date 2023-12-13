@@ -12,11 +12,11 @@ import Vision
 
 struct CameraViewWrapper : UIViewControllerRepresentable {
     
-    @ObservedObject var poseEstimator : PoseEstimator
+    @ObservedObject var handTracker : HandTracker
     
     func makeUIViewController(context: Context) -> some UIViewController {
         let cvc = CameraViewController()
-        cvc.delegate = poseEstimator
+        cvc.delegate = handTracker
         return cvc
     }
     

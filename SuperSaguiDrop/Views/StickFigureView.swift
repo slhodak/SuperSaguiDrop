@@ -9,16 +9,16 @@ import SwiftUI
 import Vision
 
 struct StickFigureView: View {
-    @ObservedObject var poseEstimator: PoseEstimator
+    @ObservedObject var handTracker: HandTracker
     var size: CGSize
     
     var body: some View {
         ZStack {
-            if !poseEstimator.handLandmarksA.isEmpty {
-                drawHand(landmarks: poseEstimator.handLandmarksA, color: .orange)
+            if !handTracker.handLandmarksA.isEmpty {
+                drawHand(landmarks: handTracker.handLandmarksA, color: .orange)
             }
-            if !poseEstimator.handLandmarksB.isEmpty {
-                drawHand(landmarks: poseEstimator.handLandmarksB, color: .red)
+            if !handTracker.handLandmarksB.isEmpty {
+                drawHand(landmarks: handTracker.handLandmarksB, color: .red)
             }
 
         }
