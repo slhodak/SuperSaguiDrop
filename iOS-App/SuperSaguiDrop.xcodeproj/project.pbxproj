@@ -71,6 +71,7 @@
 		17713D172B28C4B400E515C0 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameState.swift; path = SuperSaguiDrop/Helper/Utility/GameState.swift; sourceTree = SOURCE_ROOT; };
 		17713D192B28C57600E515C0 /* TitleScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScreenView.swift; sourceTree = "<group>"; };
 		17713D1D2B28D2FE00E515C0 /* SSDNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSDNumber.swift; sourceTree = "<group>"; };
+		17713D1F2B2A381E00E515C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D6638E9728B5FFE80086F995 /* SuperSaguiDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperSaguiDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6638E9A28B5FFE80086F995 /* SuperSaguiDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSaguiDropApp.swift; sourceTree = "<group>"; };
 		D6638E9E28B5FFEA0086F995 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -158,6 +159,7 @@
 		D6638E9928B5FFE80086F995 /* SuperSaguiDrop */ = {
 			isa = PBXGroup;
 			children = (
+				17713D1F2B2A381E00E515C0 /* Info.plist */,
 				170EFF502B22577A00790708 /* Creatures */,
 				D6638EC428B602690086F995 /* Views */,
 				D6638ECA28B6034D0086F995 /* Shapes */,
@@ -583,6 +585,8 @@
 				DEVELOPMENT_TEAM = D3D2BJZUS3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SuperSaguiDrop/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSCameraUsageDescription = "cam needed";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -616,6 +620,8 @@
 				DEVELOPMENT_TEAM = D3D2BJZUS3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SuperSaguiDrop/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSCameraUsageDescription = "cam needed";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
