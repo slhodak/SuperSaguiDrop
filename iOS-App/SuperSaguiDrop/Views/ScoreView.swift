@@ -17,6 +17,8 @@ struct ScoreView: View {
     var oncasTamed: Int
     var gameTick: Int
     
+    let gameServerAPI = GameServerAPI()
+    
     init(gameState: Binding<GameState>, saguisCaught: Int, oncasTamed: Int, gameTick: Int) {
         self._gameState = gameState
         self.saguisCaught = saguisCaught
@@ -43,6 +45,11 @@ struct ScoreView: View {
                         ScoreItem(label: "Final Score", value: calculateScore())
                     }
                 }
+                
+                Button(action: gameServerAPI.makeGetRequest) {
+                    Text("Save Score")
+                }
+                .frame(width: 100, height: 50)
                 
                 Image("home-jungle-button")
                     .resizable()
@@ -75,5 +82,36 @@ struct ScoreItem: View {
             
             SSDNumber(number: value)
         }
+    }
+}
+
+
+class GameServerAPI {
+
+    func makeGetRequest() {
+        // Replace with your local server's IP address and port
+        let urlString = "http://192.168.15.160:3000/health"
+        guard let url = URL(string: urlString) else { return }
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            // Ensure there is no error for this HTTP response
+            guard error == nil else {
+                print("Error: \(error!)")
+                return
+            }
+
+            // Ensure there is data returned from this HTTP response
+            guard let content = data else {
+                print("No data")
+                return
+            }
+
+            // Parse and use the data returned from the server
+            guard let jsonString = String(data: content, encoding: .utf8) else { return }
+            print(jsonString)
+        }
+        
+        // Start the task
+        task.resume()
     }
 }

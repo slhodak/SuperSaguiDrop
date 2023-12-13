@@ -31,7 +31,7 @@ struct GameView: View {
     private var maxSaguisLost: Int = 3
     @State private var saguisLost: Int = 0
     
-    var themeSongPlayer = ThemeSongPlayer()
+    let themeSongPlayer = ThemeSongPlayer()
     
     private let size: CGSize = CGSize(
         width: UIScreen.main.bounds.width,
