@@ -1,10 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const { body, validationResult } = require('express-validator');
-const { insertScore } = require('./database.js');
+const Database = require('./database.js');
 
 const app = express();
 const port = process.env.SRV_PORT;
+const db = new Database();
 
 app.use(express.json())
 
@@ -36,9 +37,12 @@ app.post('/score', validateScoreData, async (req, res) => {
   try {
     const scoreData = req.body;
     // Save score to db
-    const result = await insertScore(scoreData)
+    const result = await db.insertScore(scoreData)
     res.send({"response": "OK"})
-  } catch {
+    
+  } catch (error) {
+    console.error(`Error while posting score: ${error.message}`)
+    console.error(error.stack)
     res.send({"response": "ERR"})
   }
 })

@@ -47,12 +47,12 @@ struct ScoreView: View {
                 }
                 
                 Button(action: {
-                    gameServerAPI.postScore(user: "me",
-                                          timestamp: 1010,
-                                          saguisSaved: saguisCaught,
-                                          oncasTamed: oncasTamed,
-                                          duration: gameTick,
-                                          totalScore: calculateScore())
+                    gameServerAPI.postScore(user_name: "me",
+                                            ts: 1010,
+                                            saguisSaved: saguisCaught,
+                                            oncasTamed: oncasTamed,
+                                            duration: gameTick,
+                                            totalScore: calculateScore())
                 }) {
                     Text("Save Score")
                         .font(.largeTitle)
@@ -107,6 +107,7 @@ class GameServerAPI {
             "ts": ts,
             "saguisSaved": saguisSaved,
             "oncasTamed": oncasTamed,
+            "duration": duration,
             "totalScore": totalScore,
         ]
             makePostRequest(path: "score", payload: payload)
