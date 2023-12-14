@@ -96,15 +96,15 @@ struct ScoreItem: View {
 
 class GameServerAPI {
     func postScore(
-        user: String,
-        timestamp: Int,
+        user_name: String,
+        ts: Int,
         saguisSaved: Int,
         oncasTamed: Int,
         duration: Int,
         totalScore: Int) {
         let payload: [String: Any] = [
-            "user": user,
-            "ts": timestamp,
+            "user_name": user_name,
+            "ts": ts,
             "saguisSaved": saguisSaved,
             "oncasTamed": oncasTamed,
             "totalScore": totalScore,

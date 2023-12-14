@@ -16,14 +16,19 @@ const pool = new Pool({
 });
 
 async function insertScore(data) {
-  console.log(data)
-  return
   const query = `
-    INSERT INTO high_scores (user_name, time, saguis_saved, oncas_tamed, duration, total_score)
+    INSERT INTO high_scores (user_name, ts, saguis_saved, oncas_tamed, duration, total_score)
     VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *;`;
 
-  const values = [data.user, data.time, data.saguisSaved, data.oncasTamed, data.duration, data.totalScore];
+  const values = [
+    data.user,
+    data.ts,
+    data.saguisSaved,
+    data.oncasTamed,
+    data.duration,
+    data.totalScore
+  ];
   
   try {
     const res = await pool.query(query, values);

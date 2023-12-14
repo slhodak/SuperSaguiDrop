@@ -1,12 +1,28 @@
-const express = require('express');
 require('dotenv').config();
+const express = require('express');
+const { body, validationResult } = require('express-validator');
+const { insertScore } = require('./database.js');
 
 const app = express();
 const port = process.env.SRV_PORT;
 
-const { insertScore } = require('./database.js');
-
 app.use(express.json())
+
+const validateScoreData = [
+    body('user_name').isString(),
+    body('ts').isInt(),
+    body('saguisSaved').isInt(),
+    body('oncasTamed').isInt(),
+    body('duration').isInt(),
+    body('totalScore').isInt(),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        next();
+    }
+];
 
 app.get('/', (req, res) => {
   res.send({"response": "None"});
@@ -16,11 +32,11 @@ app.get('/health', (req, res) => {
   res.send({"response": "OK"})
 })
 
-app.post('/score', async (req, res) => {
+app.post('/score', validateScoreData, async (req, res) => {
   try {
-    const payload = req.body;
+    const scoreData = req.body;
     // Save score to db
-    const result = await insertScore(payload)
+    const result = await insertScore(scoreData)
     res.send({"response": "OK"})
   } catch {
     res.send({"response": "ERR"})
