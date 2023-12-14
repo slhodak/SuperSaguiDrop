@@ -40,8 +40,10 @@ class HandTracker: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, Obser
     func detectedHandPose(request: VNRequest, error: Error?) {
         guard let handPoseResults = request.results as? [VNHumanHandPoseObservation],
               handPoseResults.first != nil else {
-            self.handLandmarksA = [:]
-            self.handLandmarksB = [:]
+            DispatchQueue.main.async {
+                self.handLandmarksA = [:]
+                self.handLandmarksB = [:]
+            }
             return
         }
         

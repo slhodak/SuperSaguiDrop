@@ -85,7 +85,6 @@ struct ScoreItem: View {
     var body: some View {
         HStack {
             Text(label)
-//                .foregroundColor(Color(red: 0.247, green: 0.890, blue: 0.204))
                 .foregroundStyle(.white)
                 .fontWeight(.bold)
                 .font(.title)
@@ -138,6 +137,13 @@ class GameServerAPI {
                 return
             }
             
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                // Handle invalid response
+                print("Invalid response")
+                return
+            }
+            
             // Ensure there is data returned from this HTTP response
             guard let content = data else {
                 print("No data")
@@ -146,7 +152,7 @@ class GameServerAPI {
             
             // Parse and use the data returned from the server
             guard let jsonString = String(data: content, encoding: .utf8) else { return }
-            print(jsonString)
+            print("Server responded: \(jsonString)")
         }
         
         // Start the task
