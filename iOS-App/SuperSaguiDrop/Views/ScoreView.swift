@@ -46,18 +46,20 @@ struct ScoreView: View {
                     }
                 }
                 
-                Button(action: {
-                    gameServerAPI.postScore(user_name: "me",
-                                            ts: 1010,
-                                            saguisSaved: saguisCaught,
-                                            oncasTamed: oncasTamed,
-                                            duration: gameTick,
-                                            totalScore: calculateScore())
-                }) {
-                    Text("Save Score")
-                        .font(.largeTitle)
-                }
-                .frame(width: 100, height: 50)
+                Image("save-score-button")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200)
+                    .onTapGesture {
+                        gameServerAPI.postScore(
+                            user_name: "me",
+                            ts: 1010,
+                            saguisSaved: saguisCaught,
+                            oncasTamed: oncasTamed,
+                            duration: gameTick,
+                            totalScore: calculateScore()
+                        )
+                    }
                 
                 Image("home-jungle-button")
                     .resizable()
