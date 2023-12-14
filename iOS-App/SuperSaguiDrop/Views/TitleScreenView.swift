@@ -30,9 +30,16 @@ struct TitleScreenView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 200)
-                    .padding(20)
                     .onTapGesture {
                         self.gameState = GameState.playing
+                    }
+                
+                Image("scoreboard-button")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 150)
+                    .onTapGesture {
+                        self.gameState = GameState.recentScores
                     }
             }
         }

@@ -11,4 +11,5 @@ enum GameState {
     case initial
     case playing
     case score
+    case recentScores
 }

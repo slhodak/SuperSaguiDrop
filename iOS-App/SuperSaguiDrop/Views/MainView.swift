@@ -30,6 +30,8 @@ struct MainView: View {
                           saguisCaught: saguisCaught,
                           oncasTamed: oncasTamed,
                           gameTick: gameTimer.gameTick)
+            case GameState.recentScores:
+                RecentScoresView(gameState: $gameState)
             }
         }
     }
