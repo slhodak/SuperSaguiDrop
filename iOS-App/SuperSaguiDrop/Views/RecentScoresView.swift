@@ -10,7 +10,7 @@ import SwiftUI
 
 let mockScores = [
     Score(userName: "me",
-          timestamp: 1010,
+          ts: 1010,
           saguisSaved: 15,
           oncasTamed: 2,
           duration: 26,
@@ -31,9 +31,6 @@ struct RecentScoresView: View {
             print("No scores returned")
             return
         }
-        
-        print("Scores returned")
-        print(scores)
         
         recentScores = scores
     }

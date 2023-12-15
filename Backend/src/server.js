@@ -50,8 +50,18 @@ app.get('/recentScores', validateScoreDataRequest, async (req, res) => {
     const scoreData = await db.fetchRecentScores(userName);
     console.log(scoreData);
     
-    res.send(scoreData);
-
+    let responseData = scoreData.map(score => ({
+      "un": userName,
+      "tis": score.ts,
+      "ss": score.saguis_saved,
+      "ot": score.oncas_tamed,
+      "d": score.duration,
+      "tos": score.total_score,
+    }));
+    console.log(responseData);
+    res.set('Content-Type', 'application/json');
+    res.send(responseData);
+    
   } catch (error) {
     console.error(`Error while fetching score: ${error.message}`);
     console.error(error.stack);

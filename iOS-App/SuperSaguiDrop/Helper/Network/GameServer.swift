@@ -14,17 +14,15 @@ class GameServer {
             switch result {
             case .success(let data):
                 do {
-                    // Must decode a list of Scores
-                    print(String(data: data, encoding: .utf8) ?? "nada")
                     let decoder = JSONDecoder()
                     let score = try decoder.decode([Score].self, from: data)
                     completion(score)
                 } catch (let error) {
-                    print("Error: \(error.localizedDescription)")
+                    print("Error decoding response: \(error.localizedDescription)")
                     completion(nil)
                 }
             case .failure(let error):
-                print("Error: \(error.localizedDescription)")
+                print("Error sending request: \(error.localizedDescription)")
                 completion(nil)
             }
         }
