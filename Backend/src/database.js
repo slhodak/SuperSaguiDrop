@@ -54,7 +54,7 @@ class Database {
       return res.rows;
     } catch (err) {
       console.error(err);
-      return []
+      return [];
     }
   }
 }
