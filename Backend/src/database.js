@@ -18,7 +18,7 @@ class Database {
       port: dbPort,
     });
   }
-  
+
   async insertScore(data) {
     const query = `
       INSERT INTO scores (user_name, ts, saguis_saved, oncas_tamed, duration, total_score)
@@ -39,6 +39,22 @@ class Database {
       console.log(res.rows[0]);
     } catch (err) {
       console.error(err);
+    }
+  }
+
+  async fetchRecentScores(userName) {
+    // TODO: Exclude scores more than a week old
+    const query = `
+      SELECT user_name, ts, saguis_saved, oncas_tamed, duration, total_score
+      FROM scores
+      WHERE user_name = $1`;
+    
+    try {
+      const res = await this.pool.query(query, [userName]);
+      return res.rows;
+    } catch (err) {
+      console.error(err);
+      return [];
     }
   }
 }

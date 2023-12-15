@@ -8,10 +8,32 @@
 import Foundation
 import SwiftUI
 
+let mockScores = [
+    Score(userName: "me",
+          ts: 1010,
+          saguisSaved: 15,
+          oncasTamed: 2,
+          duration: 26,
+          totalScore: 30)
+]
 
 struct RecentScoresView: View {
     @Binding var gameState: GameState
-    var recentScores = [Score(score: 100), Score(score: 90), Score(score: 80)]
+    @State var recentScores: [Score] = []
+    let gameServer = GameServer()
+    
+    init(gameState: Binding<GameState>) {
+        self._gameState = gameState
+    }
+    
+    func updateScores(scores: [Score]?) {
+        guard let scores = scores else {
+            print("No scores returned")
+            return
+        }
+        
+        recentScores = scores
+    }
     
     var body: some View {
         ZStack {
@@ -32,6 +54,9 @@ struct RecentScoresView: View {
                     }
             }
         }
+        .onAppear() {
+            gameServer.fetchScoresFor(userName: "me", completion: self.updateScores)
+        }
     }
 }
 
@@ -41,12 +66,8 @@ struct RecentScoreView: View {
     var body: some View {
         HStack {
             Text("Score")
-            Text(String(score.score))
+            Text(String(score.totalScore))
         }
     }
 }
 
-struct Score: Identifiable {
-    let id = UUID()
-    let score: Int
-}
