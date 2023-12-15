@@ -24,6 +24,7 @@
 		17713D1E2B28D2FE00E515C0 /* SSDNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17713D1D2B28D2FE00E515C0 /* SSDNumber.swift */; };
 		17713D212B2B91AE00E515C0 /* RecentScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17713D202B2B91AE00E515C0 /* RecentScoresView.swift */; };
 		17713D232B2CC68A00E515C0 /* GameServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17713D222B2CC68A00E515C0 /* GameServer.swift */; };
+		17713D272B2CD56000E515C0 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17713D262B2CD56000E515C0 /* Score.swift */; };
 		D6638E9B28B5FFE80086F995 /* SuperSaguiDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638E9A28B5FFE80086F995 /* SuperSaguiDropApp.swift */; };
 		D6638E9F28B5FFEA0086F995 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6638E9E28B5FFEA0086F995 /* Assets.xcassets */; };
 		D6638EA228B5FFEA0086F995 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6638EA128B5FFEA0086F995 /* Preview Assets.xcassets */; };
@@ -76,6 +77,7 @@
 		17713D1F2B2A381E00E515C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		17713D202B2B91AE00E515C0 /* RecentScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentScoresView.swift; sourceTree = "<group>"; };
 		17713D222B2CC68A00E515C0 /* GameServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameServer.swift; path = SuperSaguiDrop/Helper/Network/GameServer.swift; sourceTree = SOURCE_ROOT; };
+		17713D262B2CD56000E515C0 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		D6638E9728B5FFE80086F995 /* SuperSaguiDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperSaguiDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6638E9A28B5FFE80086F995 /* SuperSaguiDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSaguiDropApp.swift; sourceTree = "<group>"; };
 		D6638E9E28B5FFEA0086F995 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			children = (
 				170EFF562B2370F800790708 /* ThemeSongPlayer.swift */,
 				17713D172B28C4B400E515C0 /* GameState.swift */,
+				17713D262B2CD56000E515C0 /* Score.swift */,
 				174308DE2B069528009BB00F /* GameTimer.swift */,
 				D6638ED628B624890086F995 /* HandTracker.swift */,
 			);
@@ -424,6 +427,7 @@
 				17713D182B28C4B400E515C0 /* GameState.swift in Sources */,
 				17713D212B2B91AE00E515C0 /* RecentScoresView.swift in Sources */,
 				170EFF572B2370F800790708 /* ThemeSongPlayer.swift in Sources */,
+				17713D272B2CD56000E515C0 /* Score.swift in Sources */,
 				17713D1A2B28C57600E515C0 /* TitleScreenView.swift in Sources */,
 				D6638ECE28B616930086F995 /* CameraViewController.swift in Sources */,
 				170EFF4B2B22150E00790708 /* HUDView.swift in Sources */,

@@ -52,7 +52,7 @@ struct ScoreView: View {
                     .frame(width: 200)
                     .onTapGesture {
                         gameServer.postScore(
-                            user_name: "me",
+                            userName: "me",
                             ts: 1010,
                             saguisSaved: saguisCaught,
                             oncasTamed: oncasTamed,
