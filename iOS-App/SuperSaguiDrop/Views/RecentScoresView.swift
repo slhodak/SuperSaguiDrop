@@ -19,19 +19,23 @@ let mockScores = [
 
 struct RecentScoresView: View {
     @Binding var gameState: GameState
-    @State var recentScores: [Score]
+    @State var recentScores: [Score] = []
     let gameServer = GameServer()
     
-    init(gameState: Binding<GameState>, recentScores: [Score]) {
+    init(gameState: Binding<GameState>) {
         self._gameState = gameState
-        self.recentScores = []
-        self.gameServer.fetchScore(userName: "me", completion: self.updateScore)
     }
     
-    func updateScore(score: Score?) {
-        guard let score = score else { return }
+    func updateScores(scores: [Score]?) {
+        guard let scores = scores else {
+            print("No scores returned")
+            return
+        }
         
-        recentScores.append(score)
+        print("Scores returned")
+        print(scores)
+        
+        recentScores = scores
     }
     
     var body: some View {
@@ -52,6 +56,9 @@ struct RecentScoresView: View {
                         self.gameState = GameState.initial
                     }
             }
+        }
+        .onAppear() {
+            gameServer.fetchScoresFor(userName: "me", completion: self.updateScores)
         }
     }
 }

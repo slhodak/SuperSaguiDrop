@@ -9,34 +9,18 @@ import Foundation
 
 
 class GameServer {
-    func postScore(
-        userName: String,
-        ts: Int,
-        saguisSaved: Int,
-        oncasTamed: Int,
-        duration: Int,
-        totalScore: Int) {
-            let payload: [String: Any] = [
-                "user_name": userName,
-                "ts": ts,
-                "saguisSaved": saguisSaved,
-                "oncasTamed": oncasTamed,
-                "duration": duration,
-                "totalScore": totalScore,
-            ]
-            makePostRequest(path: "score", payload: payload)
-        }
-    
-    func fetchScore(userName: String, completion: @escaping (Score?) -> Void) {
-        makeGetRequest(path: "score", params: ["userName": userName]) { result in
+    func fetchScoresFor(userName: String, completion: @escaping ([Score]?) -> Void) {
+        makeGetRequest(path: "recentScores", params: ["user_name": userName]) { result in
             switch result {
             case .success(let data):
                 do {
                     // Must decode a list of Scores
+                    print(String(data: data, encoding: .utf8) ?? "nada")
                     let decoder = JSONDecoder()
-                    let score = try decoder.decode(Score.self, from: data)
+                    let score = try decoder.decode([Score].self, from: data)
                     completion(score)
-                } catch {
+                } catch (let error) {
+                    print("Error: \(error.localizedDescription)")
                     completion(nil)
                 }
             case .failure(let error):
@@ -44,6 +28,25 @@ class GameServer {
                 completion(nil)
             }
         }
+    }
+    
+    func postScore(
+        userName: String,
+        ts: Int,
+        saguisSaved: Int,
+        oncasTamed: Int,
+        duration: Int,
+        totalScore: Int
+    ) {
+        let payload: [String: Any] = [
+            "user_name": userName,
+            "ts": ts,
+            "saguisSaved": saguisSaved,
+            "oncasTamed": oncasTamed,
+            "duration": duration,
+            "totalScore": totalScore,
+        ]
+        makePostRequest(path: "score", payload: payload)
     }
     
     func makeGetRequest(

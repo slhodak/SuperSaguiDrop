@@ -18,11 +18,11 @@ struct Score: Identifiable, Decodable {
     let totalScore: Int
     
     enum CodingKeys: String, CodingKey {
-        case userName = "un"
-        case timestamp = "tis"
-        case saguisSaved = "ss"
-        case oncasTamed = "ot"
-        case duration = "d"
-        case totalScore = "tos"
+        case userName
+        case timestamp
+        case saguisSaved
+        case oncasTamed
+        case duration
+        case totalScore
     }
 }

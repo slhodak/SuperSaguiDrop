@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const { body, validationResult } = require('express-validator');
+const { query, body, validationResult } = require('express-validator');
 const Database = require('./database.js');
 
 const app = express();
@@ -10,7 +10,7 @@ const db = new Database();
 app.use(express.json())
 
 const validateScoreDataRequest = [
-  body('user_name').isString(),
+  query('user_name').isString(),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -44,21 +44,14 @@ app.get('/health', (req, res) => {
   res.send({"response": "OK"});
 });
 
-app.get('/score', validateScoreDataRequest, async (req, res) => {
+app.get('/recentScores', validateScoreDataRequest, async (req, res) => {
   try {
-    const userName = req.body.userName;
-    const scoreData = await db.fetchScore(userName);
-    res.send({
-      "response": {
-        "un": userName,
-        "tis": scoreData.ts,
-        "ss": scoreData.saguisSaved,
-        "ot": scoreData.oncasTamed,
-        "d": scoreData.duration,
-        "tos": scoreData.totalScore,
-      }
-    });
+    const userName = req.query.user_name;
+    const scoreData = await db.fetchRecentScores(userName);
+    console.log(scoreData);
     
+    res.send(scoreData);
+
   } catch (error) {
     console.error(`Error while fetching score: ${error.message}`);
     console.error(error.stack);
