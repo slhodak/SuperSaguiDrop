@@ -67,8 +67,8 @@ struct ScoreView: View {
     
     func saveGameScore() {
         let score = Score(
-            userName: "me",
-            ts: 1010,
+            userName: "testUser",
+            ts: Int(NSDate().timeIntervalSince1970),
             saguisSaved: saguisCaught,
             oncasTamed: oncasTamed,
             duration: gameTick,
@@ -86,15 +86,17 @@ struct ScoreView: View {
 struct ScoreItem: View {
     var label: String
     var value: Int
+    var textColor: Color = .white
+    var numberHeight: CGFloat = 50
     
     var body: some View {
         HStack {
             Text(label)
-                .foregroundStyle(.white)
+                .foregroundStyle(textColor)
                 .fontWeight(.bold)
                 .font(.title)
             
-            SSDNumber(number: value)
+            SSDNumber(number: value, height: numberHeight)
         }
     }
 }

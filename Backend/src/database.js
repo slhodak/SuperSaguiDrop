@@ -26,12 +26,12 @@ class Database {
       RETURNING *;`;
 
     const values = [
-      data.user,
-      data.ts,
-      data.saguisSaved,
-      data.oncasTamed,
-      data.duration,
-      data.totalScore
+      data.un,
+      data.tis,
+      data.ss,
+      data.ot,
+      data.d,
+      data.tos
     ];
     
     try {

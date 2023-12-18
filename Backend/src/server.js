@@ -10,7 +10,7 @@ const db = new Database();
 app.use(express.json())
 
 const validateScoreDataRequest = [
-  query('user_name').isString(),
+  query('un').isString(),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -46,10 +46,9 @@ app.get('/health', (req, res) => {
 
 app.get('/recentScores', validateScoreDataRequest, async (req, res) => {
   try {
-    const userName = req.query.user_name;
+    const userName = req.query.un;
     const scoreData = await db.fetchRecentScores(userName);
-    console.log(scoreData);
-    
+
     let responseData = scoreData.map(score => ({
       "un": userName,
       "tis": score.ts,
@@ -58,7 +57,7 @@ app.get('/recentScores', validateScoreDataRequest, async (req, res) => {
       "d": score.duration,
       "tos": score.total_score,
     }));
-    console.log(responseData);
+    
     res.set('Content-Type', 'application/json');
     res.send(responseData);
     

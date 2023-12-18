@@ -12,6 +12,7 @@ import SwiftUI
 // Display a number using the included digit images
 struct SSDNumber: View {
     var number: Int
+    var height: CGFloat
     
     var body: some View {
         HStack(spacing: 2) {
@@ -19,7 +20,7 @@ struct SSDNumber: View {
                 Image("ssd-\(digit)")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 50)
+                    .frame(height: height)
             }
         }
     }

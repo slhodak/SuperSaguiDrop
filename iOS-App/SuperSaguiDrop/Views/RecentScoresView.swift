@@ -8,14 +8,6 @@
 import Foundation
 import SwiftUI
 
-let mockScores = [
-    Score(userName: "me",
-          ts: 1010,
-          saguisSaved: 15,
-          oncasTamed: 2,
-          duration: 26,
-          totalScore: 30)
-]
 
 struct RecentScoresView: View {
     @Binding var gameState: GameState
@@ -41,21 +33,29 @@ struct RecentScoresView: View {
                 .ignoresSafeArea()
             
             VStack {
-                ForEach(recentScores) { score in
-                    RecentScoreView(score: score)
+                Image("scores-title-text")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 180)
+                
+                ScrollView {
+                    ForEach(recentScores) { score in
+                        RecentScoreView(score: score)
+                    }
                 }
+                .frame(height: 400)
                 
                 Image("home-jungle-button")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 200)
+                    .frame(width: 180)
                     .onTapGesture {
                         self.gameState = GameState.initial
                     }
             }
         }
         .onAppear() {
-            gameServer.fetchScoresFor(userName: "me", completion: self.updateScores)
+            gameServer.fetchScoresFor(userName: "testUser", completion: self.updateScores)
         }
     }
 }
@@ -64,10 +64,22 @@ struct RecentScoreView: View {
     var score: Score
     
     var body: some View {
-        HStack {
-            Text("Score")
-            Text(String(score.totalScore))
+        VStack {
+            Text(formattedTimestamp(score.ts))
+                .foregroundStyle(.green)
+                .fontWeight(.bold)
+                .font(.title2)
+            ScoreItem(label: "Saguis Saved", value: score.saguisSaved, textColor: .black, numberHeight: 30)
+            ScoreItem(label: "Oncas Tamed", value: score.oncasTamed, textColor: .black, numberHeight: 30)
+            ScoreItem(label: "Time Elapsed", value: score.duration, textColor: .black, numberHeight: 30)
+            ScoreItem(label: "Final Score", value: score.totalScore, textColor: .black, numberHeight: 30)
         }
     }
+    
+    func formattedTimestamp(_ timestamp: Int) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E MMM d, yyyy, h:mm a" // Sat March 4, 2023, 2:34 PM
+        return dateFormatter.string(from: date)
+    }
 }
-

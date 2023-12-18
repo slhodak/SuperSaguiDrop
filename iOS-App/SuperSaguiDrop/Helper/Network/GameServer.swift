@@ -10,7 +10,7 @@ import Foundation
 
 class GameServer {
     func fetchScoresFor(userName: String, completion: @escaping ([Score]?) -> Void) {
-        makeGetRequest(path: "recentScores", params: ["user_name": userName]) { result in
+        makeGetRequest(path: "recentScores", params: ["un": userName]) { result in
             switch result {
             case .success(let data):
                 do {
