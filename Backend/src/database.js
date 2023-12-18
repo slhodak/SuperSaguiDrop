@@ -36,7 +36,6 @@ class Database {
     
     try {
       const res = await this.pool.query(query, values);
-      console.log(res.rows[0]);
     } catch (err) {
       console.error(err);
     }

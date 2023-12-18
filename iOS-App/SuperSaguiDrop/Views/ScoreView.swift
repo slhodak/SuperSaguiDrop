@@ -16,6 +16,7 @@ struct ScoreView: View {
     var saguisCaught: Int
     var oncasTamed: Int
     var gameTick: Int
+    @State var hasSavedScore: Bool = false
     
     let gameServer = GameServer()
     
@@ -66,6 +67,7 @@ struct ScoreView: View {
     }
     
     func saveGameScore() {
+        guard !hasSavedScore else { return }
         let score = Score(
             userName: "testUser",
             ts: Int(NSDate().timeIntervalSince1970),
@@ -75,6 +77,7 @@ struct ScoreView: View {
             totalScore: calculateScore()
         )
         gameServer.postScore(score: score)
+        hasSavedScore = true
     }
     
     func calculateScore() -> Int {
