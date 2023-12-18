@@ -9,6 +9,18 @@ import Foundation
 
 
 class GameServer {
+    
+    func getServerUrl(path: String) -> String? {
+        guard let config = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Config", ofType: "plist")!) else {
+            print("Error building server URL string; could not find Config.plist")
+            return nil
+        }
+        
+        let serverIP = config["ServerIP"] as? String
+        let serverPort = config["ServerPort"] as? String
+        return "http://\(serverIP!):\(serverPort!)/\(path)"
+    }
+    
     func fetchScoresFor(userName: String, completion: @escaping ([Score]?) -> Void) {
         makeGetRequest(path: "recentScores", params: ["un": userName]) { result in
             switch result {
@@ -37,7 +49,8 @@ class GameServer {
         params: [String: Any],
         completion: @escaping (Result<Data, Error>) -> Void
     ) {
-        let baseUrl = "http://192.168.15.160:3000/\(path)"
+        guard let baseUrl = getServerUrl(path: path) else { return }
+        
         let queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value as? String ) }
         var urlComponents = URLComponents(string: baseUrl)!
         urlComponents.queryItems = queryItems
@@ -61,7 +74,7 @@ class GameServer {
     }
     
     func makePostRequest(path: String, payload: [String: Any]) {
-        let urlString = "http://192.168.15.160:3000/\(path)"
+        guard let urlString = getServerUrl(path: path) else { return }
         guard let url = URL(string: urlString) else { return }
         
         var request = URLRequest(url: url)

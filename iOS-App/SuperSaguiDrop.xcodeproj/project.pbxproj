@@ -25,6 +25,7 @@
 		17713D212B2B91AE00E515C0 /* RecentScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17713D202B2B91AE00E515C0 /* RecentScoresView.swift */; };
 		17713D232B2CC68A00E515C0 /* GameServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17713D222B2CC68A00E515C0 /* GameServer.swift */; };
 		17713D272B2CD56000E515C0 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17713D262B2CD56000E515C0 /* Score.swift */; };
+		17713D292B30BE9A00E515C0 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17713D282B30BE9A00E515C0 /* Config.plist */; };
 		D6638E9B28B5FFE80086F995 /* SuperSaguiDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6638E9A28B5FFE80086F995 /* SuperSaguiDropApp.swift */; };
 		D6638E9F28B5FFEA0086F995 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6638E9E28B5FFEA0086F995 /* Assets.xcassets */; };
 		D6638EA228B5FFEA0086F995 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6638EA128B5FFEA0086F995 /* Preview Assets.xcassets */; };
@@ -78,6 +79,7 @@
 		17713D202B2B91AE00E515C0 /* RecentScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentScoresView.swift; sourceTree = "<group>"; };
 		17713D222B2CC68A00E515C0 /* GameServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameServer.swift; path = SuperSaguiDrop/Helper/Network/GameServer.swift; sourceTree = SOURCE_ROOT; };
 		17713D262B2CD56000E515C0 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		17713D282B30BE9A00E515C0 /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		D6638E9728B5FFE80086F995 /* SuperSaguiDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperSaguiDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6638E9A28B5FFE80086F995 /* SuperSaguiDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSaguiDropApp.swift; sourceTree = "<group>"; };
 		D6638E9E28B5FFEA0086F995 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				17713D1F2B2A381E00E515C0 /* Info.plist */,
+				17713D282B30BE9A00E515C0 /* Config.plist */,
 				170EFF502B22577A00790708 /* Creatures */,
 				D6638EC428B602690086F995 /* Views */,
 				D6638ECA28B6034D0086F995 /* Shapes */,
@@ -392,6 +395,7 @@
 				170EFF552B23643A00790708 /* SSD-onca-roar.mp3 in Resources */,
 				D6638EA228B5FFEA0086F995 /* Preview Assets.xcassets in Resources */,
 				D6638E9F28B5FFEA0086F995 /* Assets.xcassets in Resources */,
+				17713D292B30BE9A00E515C0 /* Config.plist in Resources */,
 				170EFF522B23642400790708 /* SSD-meow.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
