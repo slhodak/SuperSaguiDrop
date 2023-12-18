@@ -51,14 +51,7 @@ struct ScoreView: View {
                     .scaledToFit()
                     .frame(width: 200)
                     .onTapGesture {
-                        gameServer.postScore(
-                            userName: "me",
-                            ts: 1010,
-                            saguisSaved: saguisCaught,
-                            oncasTamed: oncasTamed,
-                            duration: gameTick,
-                            totalScore: calculateScore()
-                        )
+                        saveGameScore()
                     }
                 
                 Image("home-jungle-button")
@@ -70,6 +63,18 @@ struct ScoreView: View {
                     }
             }
         }
+    }
+    
+    func saveGameScore() {
+        let score = Score(
+            userName: "me",
+            ts: 1010,
+            saguisSaved: saguisCaught,
+            oncasTamed: oncasTamed,
+            duration: gameTick,
+            totalScore: calculateScore()
+        )
+        gameServer.postScore(score: score)
     }
     
     func calculateScore() -> Int {

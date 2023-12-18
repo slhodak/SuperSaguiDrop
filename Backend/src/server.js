@@ -21,12 +21,12 @@ const validateScoreDataRequest = [
 ];
 
 const validateScoreDataInput = [
-    body('user_name').isString(),
-    body('ts').isInt(),
-    body('saguisSaved').isInt(),
-    body('oncasTamed').isInt(),
-    body('duration').isInt(),
-    body('totalScore').isInt(),
+    body('un').isString(),
+    body('tis').isInt(),
+    body('ss').isInt(),
+    body('ot').isInt(),
+    body('d').isInt(),
+    body('tos').isInt(),
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

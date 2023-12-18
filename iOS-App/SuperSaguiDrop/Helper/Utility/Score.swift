@@ -25,4 +25,15 @@ struct Score: Identifiable, Decodable {
         case duration = "d"
         case totalScore = "tos"
     }
+    
+    var asDict: [String: Any] {
+        return [
+            "un": userName,
+            "tis": ts,
+            "ss": saguisSaved,
+            "ot": oncasTamed,
+            "d": duration,
+            "tos": totalScore
+        ]
+    }
 }

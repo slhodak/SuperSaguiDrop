@@ -28,23 +28,8 @@ class GameServer {
         }
     }
     
-    func postScore(
-        userName: String,
-        ts: Int,
-        saguisSaved: Int,
-        oncasTamed: Int,
-        duration: Int,
-        totalScore: Int
-    ) {
-        let payload: [String: Any] = [
-            "user_name": userName,
-            "ts": ts,
-            "saguisSaved": saguisSaved,
-            "oncasTamed": oncasTamed,
-            "duration": duration,
-            "totalScore": totalScore,
-        ]
-        makePostRequest(path: "score", payload: payload)
+    func postScore(score: Score) {
+        makePostRequest(path: "score", payload: score.asDict)
     }
     
     func makeGetRequest(
