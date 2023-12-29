@@ -2,7 +2,7 @@
 
 ## Game Overview
 
-Super Sagui Drop is an iOS game that uses Apple's Vision Framework for hand-tracking. Players interact with falling marmosets, known locally as "saguis", and attacking jaguars, or "oncas".
+Super Sagui Drop is an iOS game that uses Apple's Vision Framework for hand-tracking. Players interact with falling marmosets, known locally as "saguis", and attacking jaguars, or "onças".
 
 ### How to Play
 
@@ -15,12 +15,12 @@ An icon will appear at the top right of the screen that indicates whether any ha
 - Successfully catching a sagui awards points.
 
 #### Petting Oncas
-- Oncas will appear randomly
+- Onças will appear randomly
 - Use your hands to pet them.
-- Successfully taming an onca awards extra points.
+- Successfully taming an onça awards extra points.
 
 ### Scoring
-- Points are awarded for: total saguis caught, oncas tamed, and the total time elapsed during the game.
+- Points are awarded for: total saguis caught, onças tamed, and the total time elapsed during the game.
 - The game ends when the player fails to catch 3 falling saguis.
 
 #### Save Score
