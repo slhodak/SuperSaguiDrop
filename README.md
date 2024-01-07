@@ -33,7 +33,7 @@ An icon will appear at the top right of the screen that indicates whether any ha
 <img src="./examples/SSD-homescreen.JPG" width="200">
 
 #### Game Screen
-<img src="./examples/SSD-gamescreen.JPG" width="200" alt="Game Screen">
+<img src="./examples/ssd-gamescreen.gif" width="200" alt="Game Screen">
 
 #### Score Screen
 <img src="./examples/SSD-scorescreen.JPG" width="200">
